@@ -222,3 +222,6 @@ $sum += $number;
 say "The sum of (@numbers) is $sum";
 }
 
+while (<>) {
+
+}
