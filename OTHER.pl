@@ -2,6 +2,8 @@
 
 
 use 5.10.0; #для того чтобы можно было использовать полезные функции из новых версий. Например, say
+use strict;
+
 use utf8;
 use open qw( :std :encoding(UTF-8) );
 use warnings;
@@ -204,8 +206,7 @@ sub name_of_numbers {
 # }
 
 # print "\nМаксимальное значение из чисел = " . max;
-use 5.10.0;
-use Perl::Tidy;
+use 5.10.0; 
 
 
 running_sum( 5, 6 ); 
@@ -221,5 +222,3 @@ $sum += $number;
 say "The sum of (@numbers) is $sum";
 }
 
-#undef;
-printf "Notepad++\n";
