@@ -204,7 +204,8 @@ sub name_of_numbers {
 # }
 
 # print "\nМаксимальное значение из чисел = " . max;
-use 5.10.0; 
+use 5.10.0;
+use Perl::Tidy;
 
 
 running_sum( 5, 6 ); 
@@ -220,3 +221,5 @@ $sum += $number;
 say "The sum of (@numbers) is $sum";
 }
 
+#undef;
+printf "Notepad++\n";
