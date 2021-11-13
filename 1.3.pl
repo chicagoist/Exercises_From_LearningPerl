@@ -4,7 +4,6 @@
 
 
 use 5.10.0; # для того чтобы можно было использовать полезные функции из новых версий. Например, say
-use strict;
 use utf8;
 use open qw( :std :encoding(UTF-8) );
 use warnings;

@@ -8,6 +8,7 @@
 # должна быть равна 25.
 
 use 5.10.0;
+use strict;
 use utf8;
 use open qw( :std :encoding(UTF-8) );
 use warnings;

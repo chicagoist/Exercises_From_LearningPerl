@@ -4,6 +4,7 @@
 # программу для вычисления суммы чисел от 1 до 1000.
 
 use 5.10.0;
+use strict;
 use utf8;
 use open qw( :std :encoding(UTF-8) );
 use warnings;
