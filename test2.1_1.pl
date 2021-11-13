@@ -3,14 +3,13 @@
 
 use 5.10.0;
 use strict;
-#для того чтобы можно было использовать полезные функции из новых версий. Например, say
 use utf8;
 use open qw( :std :encoding(UTF-8) );
 use warnings;
 
 
 sub min_and_max {
-    my ( $x, $y, $z ) = @_;
+
 
     $_[0] = 2;
     $_[1] = 1;
