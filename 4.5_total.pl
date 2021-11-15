@@ -18,6 +18,14 @@ use strict;
 use utf8;
 use open qw(:std :encoding(UTF-8));
 use warnings;
+sub greet;
+
+
+greet("Fred");
+greet("Barney");
+greet("Wilma");
+greet("Betty");
+
 
 sub greet {
 
@@ -37,11 +45,6 @@ sub greet {
     push @persons, $name;
 
 }
-
-greet("Fred");
-greet("Barney");
-greet("Wilma");
-greet("Betty");
 
 # Верный ответ из книги:
 
