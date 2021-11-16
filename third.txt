@@ -1,0 +1,2 @@
+Третий файл!\n
+#  perl OTHER.pl first.txt second.txt third.txt 

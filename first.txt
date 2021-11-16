@@ -1,0 +1,2 @@
+Первый файл!
+# perl OTHER.pl first.txt second.txt third.txt 
