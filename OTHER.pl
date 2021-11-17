@@ -1,11 +1,11 @@
 #!/usr/bin/perl -w
 
 
-use 5.10.0; #для того чтобы можно было использовать полезные функции из новых версий. Например, say
 use strict;
-
+use open qw(:utf8);
+binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
 use utf8;
-use open qw(:std :encoding(UTF-8));
 use warnings;
 
 
@@ -367,25 +367,33 @@ use warnings;
 #     print "\$ARGV one = $ARGV\n";
 # }
 
-#@ARGV   = undef;
 
-while (<>) {
-    #работает
-    chomp;
-    open BEDROCK, '>>', 'logfile' or die;
-
-    print(BEDROCK "$_\n");
-    #print("$_\n");
-    #print"BEDROCK\n";
-
-    close(BEDROCK);
+#@ARGV    = undef;
 
 
-}
-
+#
+# my $filename = "logfile";
+# open BEDROCK, ">:encoding(UTF-8)", 'logfile' || die;
+# #open(fh, '<', 'logfile') or die "Can't open $filename: $!";
+# #print "\$fh = $fh\n";
+# while (<fh>) {
+#     #работает
+#     chomp;
+#     #open BEDROCK, '<', 'logfile' or die;
+#
+#     #print(BEDROCK "$_\n");
+#     print("$_\n");
+#     #binmode(STDOUT, ":utf8");
+#     #print BEDROCK "$_\n";
+#
+#     #close(BEDROCK);
+# }
+#close(BEDROCK);
 # $ perl OTHER.pl OTHER.pl
 
+
 # @ARGV = qw( first.txt OTHER.pl );  # Принудительное чтение трех файлов
+
 
 # while (<>) {
 #     #работает
@@ -394,21 +402,12 @@ while (<>) {
 #     my $fh;
 #
 #     open($fh, '>>', 'logfile') or die $!;
-#
-#
 #     #$_ = <STDIN>;
 #
 #     print($fh "$_\n");
 #
 #     close($fh);
 # }
-
-
-
-
-
-
-
 
 
 # sub logfile_name {
@@ -419,13 +418,10 @@ while (<>) {
 #         $_ = <STDIN>;
 #
 #         print(BEDROCK "$_\n");
-#
-#
-#
-#
 # }
 #
 # logfile_name();
+
 
 # my @array = (0..10);
 # print @array;     # Вывод списка элементов
@@ -433,20 +429,20 @@ while (<>) {
 # print reverse <>;
 # print (2+3)*4;
 
-sub print_format {
-    my ($user, $days_to_die) = @_;
 
-    print "Первым делом, введите ваш логин : ";
-    chomp($user = <STDIN>);
-    #print "\$user = $user\n";
-    $days_to_die = rand(10);
-
-    printf "Hello, %s; your password expires in %0.1f days!\n",
-        $user, $days_to_die;
-}
-
-
+# sub print_format {
+#     my ($user, $days_to_die) = @_;
+#
+#     print "Первым делом, введите ваш логин : ";
+#     chomp($user = <STDIN>);
+#     #print "\$user = $user\n";
+#     $days_to_die = rand(10);
+#
+#     printf "Hello, %s; your password expires in %0.1f days!\n",
+#         $user, $days_to_die;
+# }
 #print_format();
+
 
 # my @items = qw( wilma dino pebbles );
 # my $format = "The items are:\n" . ("%13s\n" x @items);
@@ -455,3 +451,31 @@ sub print_format {
 #printf "The items are:\n".("%10s\n" x @items), @items;
 
 
+# sub is_interactive {
+#
+#     return -t STDIN && -t STDOUT;
+#
+# }
+# my $do = 1;
+# # while( is_interactive() && $do ){
+#
+#     print "Tell me anything: ";
+#
+#     my $line = <>;
+#
+#     print "Echo: ".$line;
+#
+#     $do = 0 if $line eq "bye$/";
+#
+# }
+# print "Goodbye$/";
+
+
+#open PASSWD, ">:encoding(UTF-8)", 'logfile' || die;
+if (!open PASSWD, '<:encoding(UTF-8)', "/etc/passwd") {
+    die "How did you get logged in? ($!)";
+}
+while (<PASSWD>) {
+    chomp;
+    print "$_\n";
+}
