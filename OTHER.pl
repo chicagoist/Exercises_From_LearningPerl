@@ -489,3 +489,5 @@ foreach(0..$#ARGV) {
 @my_list = reverse @my_list;
 print join(", ", @my_list);
 
+#Немного отсебятины. revers ARGV
+
