@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-
+use 5.10.0;
 use strict;
 use open qw(:utf8);
 binmode(STDIN, ':utf8');
@@ -472,10 +472,20 @@ use warnings;
 
 
 #open PASSWD, ">:encoding(UTF-8)", 'logfile' || die;
-if (!open PASSWD, '<:encoding(UTF-8)', "/etc/passwd") {
-    die "How did you get logged in? ($!)";
+# if (!open PASSWD, '<:encoding(UTF-8)', "/etc/passwd") {
+#     die "How did you get logged in? ($!)";
+# }
+# while (<PASSWD>) {
+#     chomp;
+#     print "$_\n";
+# }
+
+if(@ARGV == 0) { die "Miss Arguments? usage: pick file_name line_no1 line_no2 ..."};
+state @my_list;
+foreach(0..$#ARGV) {
+    say "$_";
+    push @my_list, $ARGV[$_];
 }
-while (<PASSWD>) {
-    chomp;
-    print "$_\n";
-}
+@my_list = reverse @my_list;
+print join(", ", @my_list);
+
