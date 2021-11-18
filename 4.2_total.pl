@@ -1,17 +1,27 @@
 #!/usr/bin/perl -w
 
-# Используя функцию из упражнения 4.1_total.pl, напишите
-# программу для вычисления суммы чисел от 1 до 1000.
+# File 4.2_total.pl
+# https://github.com/chicagoist/Exercises_From_LearningPerl.git
+# https://www.learning-perl.com/
+# https://www.linkedin.com/in/legioneroff/
+
 
 use 5.10.0;
 use strict;
+use open qw(:utf8);
+binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
 use utf8;
-use open qw( :std :encoding(UTF-8) );
 use warnings;
+
+
+# Используя функцию из упражнения 4.1_total.pl, напишите
+# программу для вычисления суммы чисел от 1 до 1000.
+
 
 print "Введите два числа. Начало и конец диапазона : \n";
 my $user_total = total(<STDIN>);
-print "Общая сумма всех чисел дипазона равна $user_total.\n";
+print "Общая сумма всех чисел диапазона равна $user_total.\n";
 
 sub total {
 
