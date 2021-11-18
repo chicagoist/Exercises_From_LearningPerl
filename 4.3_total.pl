@@ -1,5 +1,21 @@
 #!/usr/bin/perl -w
 
+# File 4.3_total.pl
+# https://github.com/chicagoist/Exercises_From_LearningPerl.git
+# https://www.learning-perl.com/
+# https://www.linkedin.com/in/legioneroff/
+
+
+use 5.10.0;
+use strict;
+use open qw(:utf8);
+binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
+use utf8;
+use warnings;
+
+
+
 # Более сложная задача: напишите пользовательскую функцию
 #     &above_average, которая получает список чисел и возвращает те из
 #     них, которые превышают среднее арифметическое группы. (ПодQ
@@ -14,11 +30,6 @@
 # print "\@barney is @barney\n";
 # print "(Should be just 100)\n";
 
-use 5.28.0;
-use strict;
-use utf8;
-use open qw(:std :encoding(UTF-8));
-use warnings;
 
 my $list_of_numbers = arithmetical_mean(100, 1 .. 10);
 #my $list_of_numbers = arithmetical_mean(1 .. 10);
