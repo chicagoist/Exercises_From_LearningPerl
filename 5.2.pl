@@ -3,6 +3,16 @@
 # File 5.2.pl
 # https://github.com/chicagoist/Exercises_From_LearningPerl.git
 # https://www.learning-perl.com/
+# https://www.linkedin.com/in/legioneroff/
+
+
+use 5.10.0;
+use strict;
+use open qw(:utf8);
+binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
+use utf8;
+use warnings;
 
 # Напишите программу, которая предлагает пользователю ввести
 # список строковых значений в отдельных строках и выводит каждое
@@ -15,14 +25,6 @@
 # 123456789012345678901234567890123456789012345678901234567890
 #                hello
 #             good-bye
-
-use 5.10.0;
-use strict;
-use open qw(:utf8);
-binmode(STDIN, ':utf8');
-binmode(STDOUT, ':utf8');
-use utf8;
-use warnings;
 
 
 sub printf_stdout {
