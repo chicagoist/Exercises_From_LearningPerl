@@ -1,5 +1,20 @@
 #!/usr/bin/perl -w
 
+# File 4.5_total.pl
+# https://github.com/chicagoist/Exercises_From_LearningPerl.git
+# https://www.learning-perl.com/
+# https://www.linkedin.com/in/legioneroff/
+
+
+use 5.10.0;
+use strict;
+use open qw(:utf8);
+binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
+use utf8;
+use warnings;
+
+
 # Измените предыдущую программу так, чтобы она сообщала
 # имена всех людей, которых она приветствовала ранее. Например,
 # для последовательности команд
