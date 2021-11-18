@@ -1,5 +1,20 @@
 #!/usr/bin/perl -w
 
+# File 4.3_total.pl
+# https://github.com/chicagoist/Exercises_From_LearningPerl.git
+# https://www.learning-perl.com/
+# https://www.linkedin.com/in/legioneroff/
+
+
+use 5.10.0;
+use strict;
+use open qw(:utf8);
+binmode(STDIN, ':utf8');
+binmode(STDOUT, ':utf8');
+use utf8;
+use warnings;
+
+
 # Напишите пользовательскую функцию с именем greet. ФункQ
 # ция приветствует человека по имени и сообщает ему имя, использоQ
 # ванное при предыдущем приветствии. Например, для последоваQ
@@ -11,22 +26,16 @@
 # Hi Barney! Fred is also here!
 
 
-use 5.10.0;
-use strict;
-use utf8;
-use open qw(:std :encoding(UTF-8));
-use warnings;
-
 sub greet {
 
     state $first_name; # инициализируем статические переменные в scope этой функции
     state $second_name; # инициализируем статические переменные в scope этой функции
 
-    if ( !$first_name ) { # если первая переменная == undef, 
+    if ( !defined $first_name) { # если первая переменная == undef,
 
         $first_name = pop @_; # тогда присваиваем значение первого элемента из массива @_ используя функцию pop
 
-    }elsif ( !$second_name ) { # если вторая переменная == undef, 
+    }elsif ( !defined $second_name) { # если вторая переменная == undef,
 
         $second_name = pop @_; # тогда присваиваем значение первого элемента из массива @_ используя функцию pop
 
