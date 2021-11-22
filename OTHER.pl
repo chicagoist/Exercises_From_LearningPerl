@@ -2,7 +2,7 @@
 
 use 5.10.0;
 use strict;
-use open qw(:utf8);
+use open qw( :std :encoding(UTF-8) );
 binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use utf8;
