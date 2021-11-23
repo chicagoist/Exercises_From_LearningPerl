@@ -480,14 +480,23 @@ use warnings;
 #     print "$_\n";
 # }
 
-if(@ARGV == 0) { die "Miss Arguments? usage: pick file_name line_no1 line_no2 ..."};
-state @my_list;
-foreach(0..$#ARGV) {
-    say "$_";
-    push @my_list, $ARGV[$_];
+# if(@ARGV == 0) { die "Miss Arguments? usage: pick file_name line_no1 line_no2 ..."};
+# state @my_list;
+# foreach(0..$#ARGV) {
+#     say "$_";
+#     push @my_list, $ARGV[$_];
+# }
+# @my_list = reverse @my_list;
+# print join(", ", @my_list);
+
+my $longest = 0;
+foreach my $key ( keys %ENV ) {
+    my $key_length = length( $key );
+    $longest = $key_length if $key_length > $longest;
 }
-@my_list = reverse @my_list;
-print join(", ", @my_list);
+foreach my $key ( sort keys %ENV ) {
+    printf "%-${longest}s  %s\n", $key, $ENV{$key};
+}
 
 #Немного отсебятины. revers ARGV
 
