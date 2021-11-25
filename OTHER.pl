@@ -1,5 +1,6 @@
 #!/usr/bin/perl -w
 
+
 use 5.10.0;
 use strict;
 use open qw( :std :encoding(UTF-8) );
@@ -10,17 +11,6 @@ binmode(STDOUT, ':utf8');
 use utf8;
 use warnings;
 use POSIX;
-
-
-# my @rocks = ();
-# my $first;
-# my $second;
-
-# ($first, $second) = qw( привет пока перл валера );
-
-# $rocks[99] = 99;
-# $rocks[0] = "нулевой";
-# #$list[0..3] = qw(привет пока перл валера);
 
 # print "\n" . $rocks[-100] . "\n";
 # #print "\n" . $#rocks . "\n";
@@ -492,14 +482,117 @@ use POSIX;
 # @my_list = reverse @my_list;
 # print join(", ", @my_list);
 
-my $longest = 0;
-foreach my $key ( keys %ENV ) {
-    my $key_length = length( $key );
-    $longest = $key_length if $key_length > $longest;
-}
-foreach my $key ( sort keys %ENV ) {
-    printf "%-${longest}s  %s\n", $key, $ENV{$key};
+
+=begin  BlockComment  # BlockCommentNo_1
+
+sub sort_ENV {
+    my $longest = 0;
+    foreach my $key (keys %ENV) {
+        my $key_length = length($key);
+        $longest = $key_length if $key_length > $longest;
+    }
+    foreach my $key (sort keys %ENV) {
+        printf "%-${longest}s  %s\n", $key, $ENV{$key};
+    }
 }
 
-#Немного отсебятины. revers ARGV
+my $departed = B::Deparse->new("-p","-sC");
+my $body = $departed->coderef2text(\&sort_ENV);
+
+print $body;
+
+
+=end    BlockComment  # BlockCommentNo_1
+
+=cut
+
+
+
+=begin  BlockComment  # BlockCommentNo_2
+
+$_ = "yabba dabba doo"; 
+if (/abba/) {
+print "It matched!\n";
+
+} 
+
+=end    BlockComment  # BlockCommentNo_2
+
+=cut
+
+
+
+=begin  BlockComment  # BlockCommentNo_3
+
+$_ = "abba"; 
+if (/(.)\1/) {  # Совпадает с 'bb'
+print "It matched same character next to itself!\n"; 
+} 
+
+=end    BlockComment  # BlockCommentNo_3
+
+=cut
+
+
+
+
+=begin  BlockComment  # BlockCommentNo_4
+
+$_ = "yabba dabba doo"; 
+if (/y(....) d\1/) {
+	print "It matched the same after y and d!\n"; 
+	} 
+
+=end    BlockComment  # BlockCommentNo_4
+
+=cut
+
+
+
+=begin  BlockComment  # BlockCommentNo_5
+
+$_ = "yabba dabba doo"; 
+if (/y(.)(.)\2\1/) { # Совпадает с 'abba'
+	print "Это слвпадает с abba и АССА !\n"; 
+	} 
+
+=end    BlockComment  # BlockCommentNo_5
+
+=cut
+
+
+		
+
+=begin  BlockComment  # BlockCommentNo_6
+
+$_ = "yabba dabba doo"; 
+if (/y((.)(.)\3\2) d\1/) {
+	print "Странно !\n";
+	# разобрался! 
+	# после y первая скобка и она уже содержит совпадение
+	# по abba , а последний шаблон ищет совпадение после d
+	# из первой скобки и это: dabba
+}
+
+
+=end    BlockComment  # BlockCommentNo_6
+
+=cut
+
+
+
+
+
+		
+	
+		#=begin  BlockComment  # BlockCommentNo_7
+
+$_ = "Xaa11bb"; # в учебнике была ошибка. пропустили X
+if (/(.)(.)\g{-1}11/) {
+	print "It matched!\n"; 
+	} 
+
+=end    BlockComment  # BlockCommentNo_7
+
+=cut
 
