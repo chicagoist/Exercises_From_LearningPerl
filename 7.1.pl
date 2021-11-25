@@ -9,7 +9,7 @@ binmode( STDIN , ':utf8' );
 binmode( STDOUT , ':utf8' );
 use utf8;
 use warnings;
-use POSIX;
+#use POSIX;
 #use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
 
 # File 7.1.pl
