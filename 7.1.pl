@@ -1,19 +1,5 @@
 #!/usr/bin/perl -w
 
-# File 6.3.pl
-# https://github.com/chicagoist/Exercises_From_LearningPerl.git
-# https://www.learning-perl.com/
-# https://www.linkedin.com/in/legioneroff/
-
-# Напишите программу для вывода всех ключей и значений
-# в %ENV. Выведите результаты в два столбца в ASCII-алфавитном порядке.
-# Отформатируйте результат так, чтобы данные в обоих столбцах
-# выравнивались по вертикали. Функция length поможет вычислить
-# ширину первого столбца. Когда программа заработает, попробуйте
-# задать новые переменные среды и убедитесь в том, что они
-# присутствуют в выходных данных.
-
-
 use 5.10.0;
 use strict;
 use open qw(:std :encoding(UTF-8));
@@ -25,6 +11,13 @@ use utf8;
 use warnings;
 use POSIX;
 #use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
+
+# File 6.3.pl
+# https://github.com/chicagoist/Exercises_From_LearningPerl.git
+# https://www.learning-perl.com/
+# https://www.linkedin.com/in/legioneroff/
+
+
 
 # Напишите программу, выводящую каждую строку входных
 # данных, в которой присутствует слово fred (с другими строками ничего делать не нужно).
