@@ -3,10 +3,13 @@
 use 5.10.0;
 use strict;
 use open qw( :std :encoding(UTF-8) );
+use Encode qw(decode_utf8);
+BEGIN{ @ARGV = map decode_utf8($_, 1),@ARGV; }
 binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use utf8;
 use warnings;
+use POSIX;
 
 
 # my @rocks = ();
