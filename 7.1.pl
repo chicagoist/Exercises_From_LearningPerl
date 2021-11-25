@@ -12,7 +12,7 @@ use warnings;
 use POSIX;
 #use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
 
-# File 6.3.pl
+# File 7.1.pl
 # https://github.com/chicagoist/Exercises_From_LearningPerl.git
 # https://www.learning-perl.com/
 # https://www.linkedin.com/in/legioneroff/
