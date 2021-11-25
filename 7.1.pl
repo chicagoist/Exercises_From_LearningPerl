@@ -25,6 +25,8 @@ use POSIX;
 # Создайте небольшой текстовый файл, в котором упоминаются fred flintstone и его друзья.
 # Используйте его для передачи входных данных этой и другим программам этого раздела.
 
+
+
 sub find_a_string {
     my $index_fred = 0; # индекс для подсчёта строк с именем fred
     my $index_all = 0; # индекс подсчёта общих строк
@@ -64,15 +66,8 @@ find_a_string( <> );
 # $ perl 7.1.pl examples/sample_files/text_files/sample_text
 
 
-# while( <STDIN> ) {
-#     chomp;
-#     if ( /$ARGV[0]/ ) { # May be hazardous for your health
-#         print "\tMatches\n";
-#     }
-#     else {
-#         print "\tDoesn't match\n";
-#     }
-# }
+
+
 
 
 # Верный ответ из книги:
