@@ -16,13 +16,17 @@
 
 use 5.10.0;
 use strict;
-use open qw(:utf8);
+use open qw( :std :encoding(UTF-8) );
+use Encode qw(decode_utf8);
+BEGIN{ @ARGV = map decode_utf8($_, 1),@ARGV; }
 binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use utf8;
 use warnings;
 use POSIX;
+
 #use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
+
 
 my $max_length = 0;
 my @names_env;
