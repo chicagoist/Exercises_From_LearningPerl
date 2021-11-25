@@ -44,9 +44,9 @@ sub find_a_string {
     print "\n";
     foreach ( 0 .. 40 )
     {
-        printf( "%s" , "§§" );
+        printf( "%s" , "##" );
     }
-    print "\n";
+    print "\n\n";
     # блок разделения между тестами. просто для наглядности
 
     foreach ( @_ )
