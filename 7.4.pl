@@ -30,7 +30,11 @@ sub find_a_string {
     foreach (@_) # запускаем цикл по массиву
     {
 
-        if ($_ =~ /[\p{Lu}]{1}[\p{Ll}+]/) {
+        if ($_ =~ /[\p{Lu}]{1}[\p{Ll}+]/)
+        #if ($_ =~ /[A-Z][a-z]+/)
+
+
+        {
 
             print "$_\n";
             $index_dots++
@@ -67,6 +71,4 @@ find_a_string(<>);
 
 # Верный ответ из книги:
 
-#Here’s one way to do it:
-#Here’s one way to do it: change the pattern used in the first exercise’s answer to /[fF]red/.
-# You could also have tried /(f|F)red/  or /fred|Fred/, but the character class is more efficient.
+#Here’s one way to do it: change the pattern used in the first exercise’s answer to /[A-Z][a-z]+/.
