@@ -21,6 +21,7 @@ make it a double date."
 "sure," said betty. "they always like to play skee-ball."
 
 so wilma found fred and told him, "hey, fred, you've been going
+
 out bowling every night this week. betty and i want to go to the
 hard rock cafe for pterodactyl burgers."
 
@@ -146,5 +147,11 @@ she pulled the phone away from fred in time to hear barney say,
 heard someone named barney on the line. but there is no one named
 barney here. no barney at all. put that bowling ball down,
 bamm-bamm!"
+
+// Проверочные строки
+***so wilma found Fred and told him, "hey,fred, you've been going
+***so wilma found Afred and told him, "hey, ifred, you've been going
+Afred and told him, "hey, ifred, you've been going *fred
+ifred, you've been going
 
 end of story
