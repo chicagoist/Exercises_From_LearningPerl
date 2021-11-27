@@ -31,7 +31,7 @@ sub find_a_string {
     chomp( @_ );
     foreach ( @_ ) # запускаем цикл по массиву
     {
-        if ( /fred/ ) # если находим нужное слово в строке
+        if ( /\W[F|f]red/ ) # только fred или Fred, не Afred, ifred но пролазит *fred
         {
             print "$_\n"; # печатаем эту строку
             $index_fred++; # и добавляем в индекс
@@ -51,7 +51,7 @@ sub find_a_string {
     {
         if ( /(.)*/ ) # проходим все строки подряд без ограничений
         {
-            print "$_\n"; # печатаем текст
+            #print "$_\n"; # печатаем текст
             $index_all++; # добавляем в счетчик
         }
     }
@@ -70,5 +70,6 @@ find_a_string( <> );
 
 # Верный ответ из книги:
 
-
 #Here’s one way to do it:
+#Here’s one way to do it: change the pattern used in the first exercise’s answer to /[fF]red/.
+# You could also have tried /(f|F)red/  or /fred|Fred/, but the character class is more efficient.
