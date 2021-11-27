@@ -31,7 +31,7 @@ sub find_a_string {
     chomp( @_ );
     foreach ( @_ ) # запускаем цикл по массиву
     {
-        if ( /\W[F|f]red/ ) # только fred или Fred, не Afred, ifred но пролазит *fred
+        if ( /[Fred|fred]/ ) # только fred или Fred, не Afred, ifred но пролазит *fred
         {
             print "$_\n"; # печатаем эту строку
             $index_fred++; # и добавляем в индекс
