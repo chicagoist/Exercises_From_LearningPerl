@@ -19,7 +19,11 @@ use utf8::all 'GLOBAL'; # пробую этот модуль вместо зак
 
 
 # This next line of code is used when you get to Chapter 9.
-my $what = 'fred|barney';
+# my $what = 'fred|barney';
+
+# Создайте в тестовой программе шаблон для строки match.
+# Запустите программу для входной строки beforematchafter.
+# Выводятся ли в результатах все три части строки в правильном порядке?
 
 while (<>) {
     chomp;
@@ -29,12 +33,10 @@ while (<>) {
     # have a newline within your data string.
     # s/#/\n/g;
 
-    if (/YOUR_PATTERN_GOES_HERE/) {
+    if (/\Bmatch\B/) {
         print "Matched: |$`<$&>$'|\n";
-        # If you need these for testing patterns with
-        # memories, uncomment them as well
-        # print "    And memory one got <$1>\n";
-        # print "    And memory two got <$2>\n";
+        #  матчится before3match5after
+        #  матчится тоже beforematchafter
     } else {
         print "No match.\n";
     }
@@ -46,49 +48,7 @@ while (<>) {
 # Верный ответ из книги:
 
 #Here’s one way to do it:
-# while (<>) {
-#     if (/wilma/) {
-#         if (/fred/) {
-#             print;
-#         }
-#     }
-# }
-#
-# This tests /fred/  only after we find /wilma/  matches,
-# but fred  could appear before or after wilma in the line;
-# each test is independent of the other. If you wanted to
-# avoid the extra nested if test, you might have written something like this:
-#
-# while (<>) {
-#     if (/wilma.*fred|fred.*wilma/) {
-#         print;
-#     }
-# }
-#
-# This works because you’ll either have wilma before fred or fred before wilma.
-# If we had written just /wilma.*fred/, that wouldn’t have matched a line like fred
-# and wilma flintstone, even though that line mentions both of them.
-# Folks who know about the logical-and operator, which we showed in Chapter 10,
-# could do both tests /fred/ and /wilma/ in the same if conditional.
-# That’s more efficient, more scalable, and an all-around better way than
-# the ones given here. But we haven’t seen logical-and yet:
-#
-# while (<>) {
-#     if (/wilma/ && /fred/) {
-#         print;
-#     }
-# }
-#
-# The low-precedence short-circuit version works too:
-#
-# while (<>) {
-#     if (/wilma/ and /fred/) {
-#         print;
-#     }
-# }
-
-# We made this an extra-credit exercise because many folks have a mental block here.
-# We showed you an “or” operation (with the vertical bar, |), but we never
-# showed you an “and” operation. That’s because there isn’t one in regular expressions.
-# Mastering Perl  revisits this example by using a regular expression look‐ ahead,
-# something even a bit too advanced for Intermediate Perl.
+# There’s one easy way to do it,
+# and we showed it back in the chapter body.
+# But if your output isn’t saying before<match>after  as it should,
+# you’ve chosen a hard way to do it.
