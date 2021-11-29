@@ -9,8 +9,8 @@ binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use utf8;
 use warnings;
-#use POSIX;
-#use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
+use POSIX;
+use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
 
 # File 7.6.pl
 # https://github.com/chicagoist/Exercises_From_LearningPerl.git
