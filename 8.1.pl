@@ -11,6 +11,7 @@ use utf8;
 use warnings;
 use POSIX;
 use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
+use CGI;
 
 # File 8.1.pl
 # https://github.com/chicagoist/Exercises_From_LearningPerl.git
