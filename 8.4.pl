@@ -26,7 +26,8 @@ use CGI;
 # чтобы вместо $1 в ней использовались именованные сохранения.
 # Обновите программу, чтобы метка переменной выводилась в итоговом
 # сообщении, например
-#    'word' contains 'Wilma'.
+#    'word' contains 'Wilma'
+
 
 while (<>) {
     chomp;
@@ -44,7 +45,7 @@ while (<>) {
         print "No match.\n";
     }
 }
-# $ perl -T 8.3.pl
+# $ perl -T 8.4.pl
 # Будет ли он совпадать с wilma, но не с barney?
 #   Matched: | Будет ли он совпадать с <wilma>, но не с barney?|
 #   word => 'wilma'
