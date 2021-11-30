@@ -1,0 +1,8 @@
+5c5
+< 	name    => $o_cgi->param('Name')    || 'UNKNOWN',
+---
+> 	name    => $o_cgi->param('name')    || 'UNKNOWN',
+9c9
+< $data{name} =~ s/^(.)?(.+)$/uc($1);lc($2)/e;
+---
+> $data{name} =~ s/^(.)?(.+)$/uc($1).lc($2)/e;

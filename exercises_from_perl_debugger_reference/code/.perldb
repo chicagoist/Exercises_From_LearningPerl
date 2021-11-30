@@ -1,0 +1,5 @@
+
+sub afterinit {
+    push(@DB::typeahead, 'o die?');
+}
+
