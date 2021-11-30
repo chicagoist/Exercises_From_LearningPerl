@@ -35,13 +35,18 @@ while (<>) {
     # s/#/\n/g;
 
     if (/\Bmatch\B/) {
-        print "Matched: |$`<$&>$'|\n";
+        print "Matched : |$`<$&>$'|\n";
         #  матчится before3match5after
         #  матчится тоже beforematchafter
     } else {
         print "No match.\n";
     }
 
+    if (/\bfred\b/) {
+        print "Matched : |$`<$&>$'|\n";
+    } else {
+        print "No match.\n";
+    }
 }
 
 
