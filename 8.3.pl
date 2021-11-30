@@ -62,4 +62,14 @@ while (<>) {
 #         print "No match: |$_|\n";
 #     }
 # }
-
+# This is the same test program (with a new pattern),
+# except that the one marked line has been added to print out $1.
+# The pattern uses a pair of \b  word-boundary anchors inside the
+# parentheses, although the pattern works the same way when
+# they are placed outside. That’s because anchors correspond
+# to a place in the string but not to any characters in the string:
+# anchors have “zero width.”
+# Admittedly, the first \b anchor isn’t really needed, due to details
+# about greediness that we won’t go into here. But it may help a tiny
+# bit with efficiency, and it cer‐ tainly helps with clarity—and
+# in the end, that one wins out.
