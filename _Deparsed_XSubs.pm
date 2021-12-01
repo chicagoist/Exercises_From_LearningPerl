@@ -1347,6 +1347,66 @@ sub finish_profile;
 sub init_profiler;
 sub set_option;
 }
+package DBD::Pg::db {
+sub SQL_ALL_TYPES() ;
+sub SQL_ARRAY() ;
+sub SQL_ARRAY_LOCATOR() ;
+sub SQL_BIGINT() ;
+sub SQL_BINARY() ;
+sub SQL_BIT() ;
+sub SQL_BLOB() ;
+sub SQL_BLOB_LOCATOR() ;
+sub SQL_BOOLEAN() ;
+sub SQL_CHAR() ;
+sub SQL_CLOB() ;
+sub SQL_CLOB_LOCATOR() ;
+sub SQL_DATE() ;
+sub SQL_DATETIME() ;
+sub SQL_DECIMAL() ;
+sub SQL_DOUBLE() ;
+sub SQL_FLOAT() ;
+sub SQL_GUID() ;
+sub SQL_INTEGER() ;
+sub SQL_INTERVAL() ;
+sub SQL_INTERVAL_DAY() ;
+sub SQL_INTERVAL_DAY_TO_HOUR() ;
+sub SQL_INTERVAL_DAY_TO_MINUTE() ;
+sub SQL_INTERVAL_DAY_TO_SECOND() ;
+sub SQL_INTERVAL_HOUR() ;
+sub SQL_INTERVAL_HOUR_TO_MINUTE() ;
+sub SQL_INTERVAL_HOUR_TO_SECOND() ;
+sub SQL_INTERVAL_MINUTE() ;
+sub SQL_INTERVAL_MINUTE_TO_SECOND() ;
+sub SQL_INTERVAL_MONTH() ;
+sub SQL_INTERVAL_SECOND() ;
+sub SQL_INTERVAL_YEAR() ;
+sub SQL_INTERVAL_YEAR_TO_MONTH() ;
+sub SQL_LONGVARBINARY() ;
+sub SQL_LONGVARCHAR() ;
+sub SQL_MULTISET() ;
+sub SQL_MULTISET_LOCATOR() ;
+sub SQL_NUMERIC() ;
+sub SQL_REAL() ;
+sub SQL_REF() ;
+sub SQL_ROW() ;
+sub SQL_SMALLINT() ;
+sub SQL_TIME() ;
+sub SQL_TIMESTAMP() ;
+sub SQL_TINYINT() ;
+sub SQL_TYPE_DATE() ;
+sub SQL_TYPE_TIME() ;
+sub SQL_TYPE_TIMESTAMP() ;
+sub SQL_TYPE_TIMESTAMP_WITH_TIMEZONE() ;
+sub SQL_TYPE_TIME_WITH_TIMEZONE() ;
+sub SQL_UDT() ;
+sub SQL_UDT_LOCATOR() ;
+sub SQL_UNKNOWN_TYPE() ;
+sub SQL_VARBINARY() ;
+sub SQL_VARCHAR() ;
+sub SQL_WCHAR() ;
+sub SQL_WLONGVARCHAR() ;
+sub SQL_WVARCHAR() ;
+}
 package DBD::SQLite {
 sub ALTER_TABLE() ;
 sub ANALYZE() ;
@@ -2805,6 +2865,10 @@ sub unbroken_text;
 sub utf8_mode;
 sub xml_mode;
 sub xml_pic;
+}
+package HTTP::Parser::XS {
+sub parse_http_request($$) ;
+sub parse_http_response;
 }
 package Hash::StoredIterator {
 sub hash_get_iterator;
@@ -6071,4 +6135,19 @@ sub parse;
 sub qv;
 sub stringify;
 sub vcmp;
+}
+package version::vxs {
+sub VCMP;
+sub _VERSION;
+sub boolean;
+sub declare;
+sub is_alpha;
+sub is_qv;
+sub new;
+sub noop;
+sub normal;
+sub numify;
+sub parse;
+sub qv;
+sub stringify;
 }
