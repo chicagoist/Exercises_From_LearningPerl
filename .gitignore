@@ -1,3 +1,5 @@
 /.idea/
 .run/
 .run/Unnamed.run.xml
+/.run/
+.gitignore
