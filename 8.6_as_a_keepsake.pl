@@ -38,21 +38,59 @@ while (<$fh>) {
         chomp;
 
         if (/^(?<target>[\p{Lu}|\p{Ll}]{1}.*\s)$/) {
+            #if (/^(?<target>[\p{Lu}|\p{Ll}]{1}.*\s)/g) {
+
+
             $_ =~ s/\cM\cJ?//g;
+
             push @state_array, $_;
+
         }
     }
+    #push @_, $_ if (!/^$/ && quotemeta(/(?<target1>[\p{Lu}|\p{Ll}]{1}.*\z)$/) );
 
+    #$_ =~ /^(?<target1>[\p{Lu}|\p{Ll}]{1}.*\N)$/;
+    # if (/^(?<target2>(^|\n)[\n|\s]*)$/) {
+    #     say "target2 = '$+{target2}'";
+    #     say "\$& = '$&'";
+    #     say "\$1 = '$1'";
+    #     say "\$i = 0";
+    #
+    # }
+    #$_ =~  s/!(^|\n)[\n\s]*/$1/g;
+    #$_ =~ /^(?<target>s*)$/;
+    #say "target1 = $+{target1}";
+
+    #say $_;
+
+    #say $_;
+    # If you want to try matching strings which may contain
+    # newlines, here's the trick to use: Uncomment this next
+    # line, then use a pound sign ("#") wherever you mean to
+    # have a newline within your data string.
+    # s/#/\n/g;
+
+    #if (quotemeta(/^(?<target2>[\p{Lu}|\p{Ll}]{1}.*\s\z)/)) {
+        #if (  !/^\s*$/ ) {
+        #if (!/^$/) {
         foreach (@state_array) {
+            #printf("%d => ", $i++);
+            #say "'$+{target2}'";
             say "$_#";
+            #print "\r\$target => $+{target1}#\n";
+
         }
+        #else {
+        #print "No match. #\n";
+        #}
+
+
+    #}
 }
 close($fh);
-
+#print join("\n", @state_array);
 # Консольный вызов скрипта:
 # $ cat examples/sample_files/text_files/sample_text | perl -T 8.6.pl
-
-
 
 # 6 часов убил времени, пока понял, что такое \cm\cJ в строке и почему у меня принт строк сбивался......
 # с виду, думал, минут десять потрачу.
@@ -73,8 +111,8 @@ close($fh);
 #
 # We used the pound sign (#) as the marker character.
 
-# DEBUGGER
-#
+
+# #
 # legioner@GFL-PF36XFZT:~/Perl_Projects/Exercises_From_Learning_Perl$ perl  -d 8.6.pl
 #
 # Loading DB routines from perl5db.pl version 1.60
