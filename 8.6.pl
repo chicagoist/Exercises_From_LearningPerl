@@ -38,12 +38,11 @@ while (<$fh>) {
     foreach (<$fh>) {
         chomp;
 
-        if (/^(?<target>[\p{Lu}|\p{Ll}]{1}.*\s)$/) {
+        if (/^(?<target>[\p{Lu}|\p{Ll}]{1}.*s*\z)/) {
             $_ =~ s/\cM\cJ?//g;
             push @state_array, $_;
         }
     }
-
         foreach (@state_array) {
             say "$_#";
         }
