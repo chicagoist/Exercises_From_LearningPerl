@@ -13,6 +13,7 @@ binmode(STDOUT, ':utf8');
 use warnings;
 use utf8::all 'GLOBAL'; # пробую этот модуль вместо закомментированных выше строк
 use Encode::Locale;
+use diagnostics;
 
 
 # File 8.6.pl
