@@ -128,3 +128,5 @@ close($fh);
 # 0  SCALAR(0x1bad250)
 #    -> "for fred and barney in lowercase, as we usually do. some lines\cM\cJ"
 #
+# P.D.
+# https://perl.developpez.com/documentations/en/5.24.0/functions/binmode.html
