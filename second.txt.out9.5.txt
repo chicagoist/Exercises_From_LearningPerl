@@ -1,0 +1,4 @@
+Второй файл!
+#  perl OTHER.pl first.txt second.txt third.txt
+
+## Copyright (C) 2021 by Yours Valerii
