@@ -141,4 +141,39 @@ use File::Spec;
 
 
 # МОДУЛЬ CGI.pm
+=begin text
+
+
+#  Наш простой сценарий CGI разбирает входные данные CGI и выводит имена и значения в виде текстового
+# документа. В списке импорта используется обозначение :all –
+
+ use CGI qw(:all);
+ #print header("text/plain");
+ print header(-type => "text/html;charset=UTF-8"),
+     start_html("Perl Expression Results"),
+     meta (-type => "text/html;charset=UTF-8"),
+         h1("Input parameters");
+ foreach my $param (param()) {
+     print "$param: " . param($param) . "\n";
+ }
+ print end_html();
+
+
+
+
+# print header(),
+#     start_html("This is the page title"),
+#     h1( "Input parameters" );
+#
+# my $list_items;
+# foreach my $param ( param() ){
+#     $list_items .= li( "$param: " . param($param) );
+# }
+# print ul( $list_items );
+# print end_html();
+
+
+=end text
+
+=cut
 
