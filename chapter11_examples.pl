@@ -117,12 +117,9 @@ $res[13] = 'C:\\Users\\User\\AppData\\Local\\ActiveState\\cache\\e5e4f4e9\\bin'
 
 =cut
 
-
+=begin text
 # МОДУЛЬ File::Spec
 # https://metacpan.org/pod/File::Spec
-
-=begin text
-
 
 # Из документации File::Spec мы узнаем, что для решения нашей задаQ чи необходимо использовать метод с именем catfile.
 # Что такое метод? Просто разновидность функции (в том, что касается наших практических целей).
@@ -139,10 +136,8 @@ use File::Spec;
 
 =cut
 
-
-# МОДУЛЬ CGI.pm
 =begin text
-
+# МОДУЛЬ CGI.pm
 
 #  Наш простой сценарий CGI разбирает входные данные CGI и выводит имена и значения в виде текстового
 # документа. В списке импорта используется обозначение :all –
@@ -157,8 +152,6 @@ use File::Spec;
      print "$param: " . param($param) . "\n";
  }
  print end_html();
-
-
 
 
 # print header(),
@@ -176,4 +169,36 @@ use File::Spec;
 =end text
 
 =cut
+
+
+
+
+=begin text
+
+# МОДУЛЬ Path::Class
+
+# The File::Spec module does work with file paths from just about any platform,
+# but the interface is a bit clunky. The Path::Class module, which doesn’t come
+# with Perl, gives you a more pleasant interface:
+
+# Модуль File::Spec работает с путями к файлам практически с любой платформы,
+# но интерфейс немного неуклюжий.
+# Модуль Path::Class, которого нет в Perl, дает более приятный интерфейс:
+
+ use Path::Class;
+ my $dir     = dir( qw(Users fred lib) );
+ my $subdir  = $dir->subdir( 'perl5' );     # Users/fred/lib/perl5
+ my $parent  = $dir->parent;                # Users/fred
+ my $windir  = $dir->as_foreign( 'Win32' ); # Users\fred\lib
+ say "\$subdir = $subdir";
+ say "\$parent = $parent";
+ say "\$windir = $windir";
+
+# $subdir = Users/fred/lib/perl5
+# $parent = Users/fred
+# $windir = Users\fred\lib
+
+=end text
+=cut
+
 
