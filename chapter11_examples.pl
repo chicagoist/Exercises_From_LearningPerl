@@ -202,3 +202,16 @@ use File::Spec;
 =cut
 
 
+# БАЗЫ ДАННЫХ и DBI
+
+use DBI;
+
+my $dbfile = "sqlite.db";
+my $dbh = DBI->connect(
+    "dbi:SQLite:dbname=$dbfile", "", "",
+    {
+        RaiseError     => 1,
+        sqlite_unicode => 1,
+    }
+);
+# $dbh->do("PRAGMA key = 'password';");
