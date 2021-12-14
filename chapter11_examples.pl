@@ -109,3 +109,7 @@ use File::Spec;
 #
 my $new_name = File::Spec->catfile($dirname, $basename);
 rename($old_name, $new_name) or warn "Can't rename '$old_name' to '$new_name': $!";
+
+
+# МОДУЛЬ CGI.pm
+
