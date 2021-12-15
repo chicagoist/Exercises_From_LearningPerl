@@ -55,6 +55,7 @@ sub modules_corelist {
 }
 
 &modules_corelist;
+
 # 379 :Pod::Simple::HTMLLegacy => 5.01
 # 380 :Pod::Simple::JustPod =>  uninitialized value  <---- THIS
 # 381 :Pod::Simple::LinkSection => 3.42
