@@ -46,10 +46,10 @@ sub modules_corelist {
 
     foreach (sort keys %module) {
         $module{$_} = $module{$_} // ' uninitialized value'; # Use of uninitialized value
-                                                             # $module{"Pod::Simple::JustPod"}
-                                                             # in concatenation (.) or string
-            print "$index: $_ => $module{$_} \n";
-            $index++;
+                                                                 # $module{"Pod::Simple::JustPod"}
+                                                                       # in concatenation (.) or string
+        print "$index: $_ => $module{$_} \n";
+        $index++;
     }
     print "\$index =  " , $index - 1 , "\n";
 }
@@ -86,3 +86,4 @@ sub modules_corelist {
 # Or wait until we release the third edition of Intermediate Perl,
 # which we will update with this new feature.
 # We’ll start working on it right after we finish this book.
+
