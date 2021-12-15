@@ -173,7 +173,7 @@ use File::Spec;
 
 
 
-=begin text
+=begin :text
 
 # МОДУЛЬ Path::Class
 
@@ -198,7 +198,20 @@ use File::Spec;
 # $parent = Users/fred
 # $windir = Users\fred\lib
 
-=end text
+=end :text
 =cut
 
+
+# БАЗЫ ДАННЫХ и DBI
+
+use DBI;
+
+my $dbfile = "sqlite.db";
+my $dbh = DBI->connect(
+    "dbi:SQLite:dbname=$dbfile", "", "",
+    {
+        RaiseError     => 1,
+        sqlite_unicode => 1,
+    }
+);
 
