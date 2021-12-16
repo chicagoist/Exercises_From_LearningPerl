@@ -45,9 +45,8 @@ sub modules_corelist {
     my %module = %{$Module::CoreList::version{5.034}};
 
     foreach (sort keys %module) {
-        $module{$_} = $module{$_} // ' uninitialized value'; # Use of uninitialized value
-                                                             # $module{"Pod::Simple::JustPod"}
-                                                             # in concatenation (.) or string
+        $module{$_} = $module{$_} // ' uninitialized value'; # Use of uninitialized value $module{"Pod::Simple::JustPod"} in concatenation (.) or string
+
             print "$index: $_ => $module{$_} \n";
             $index++;
     }
