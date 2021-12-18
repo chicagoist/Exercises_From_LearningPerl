@@ -24,7 +24,7 @@ use Data::Dumper;
 
 
 # ОПЕРАТОРЫ ПРОВЕРКИ ФАЙЛОВ
-
+{
 # Обратите внимание: содержимое $! не включается в сообщение die, потому что
 # система в данном случае не отклонила наш запрос.
 
@@ -34,7 +34,11 @@ warn "Config file is looking pretty old!\n" if -M '1.3.pl' > 1;
 #  Проверка существования файла осуществляется конструкцией –e:
 my $filename = '1.3.pl';
  warn "Oops! A file called '$filename' already exists.\n\n" if -e $filename;
+ # die "Oops! A file called '$filename' already exists.\n\n" if -e $filename;
+}
 
+
+{
 #  So let’s go through our list of files to see which of them are larger than 100 K. But even if a
 # file is large, you shouldn’t warehouse it unless it hasn’t been accessed in the last 90 days
 # (so we know that it’s not used too often). The -s  file test operator, instead of returning true or false,
@@ -60,10 +64,46 @@ foreach (@big_old_files) {
     say "$_ = $size_in_k";
 }
 
-# ПРОВЕРКА НЕСКОЛЬКИХ АТРИБУТОВ ОДНОГО ФАЙЛА
+}
 
-# Объединение нескольких файловых проверок позволяет создавать сложные логические условия.
-# Предположим, программа должна выполнить некую операцию только с файлами, доступными как
-# для чтения, так и для записи. Проверки атрибутов объединяются оператором and:
-if( -r $file and -w $file ) {... }
 
+{
+    # ПРОВЕРКА НЕСКОЛЬКИХ АТРИБУТОВ ОДНОГО ФАЙЛА
+
+    # Объединение нескольких файловых проверок позволяет создавать сложные логические условия.
+    # Предположим, программа должна выполнить некую операцию только с файлами, доступными как
+    # для чтения, так и для записи. Проверки атрибутов объединяются оператором and:
+    if (-r $file and -w $file) {...}
+
+    # Виртуальный файловый дескриптор _ (просто символ подчеркивания) использует информацию,
+    # полученную в результате выполнения последнего оператора проверки файла. Теперь Perl
+    # достаточно запросить информацию о файле всего один раз:
+    if (-r $file and -w _) {...}
+
+    # Для использования _ проверки файлы необязательно располагать рядом друг с другом.
+    # Здесь они размещаются в разных условиях if:
+    if( -r $file ) {
+    print "The file is readable!\n";}
+
+    if( -w _ ) {
+    print "The file is writable!\n";
+    }
+
+    # При возврате и выполнении другой проверки файловый дескриптор _ содержит не данные $file,
+    # как мы ожидаем, а данные $other_file:
+    my $other_file;
+    if( -r $file ) {
+    print "The file is readable!\n";
+    }
+
+    lookup( $other_file );
+
+    if( -w _ ) {
+    print "The file is writable!\n";
+    }
+
+    sub lookup {
+        return -w $_[0];
+    }
+
+}
