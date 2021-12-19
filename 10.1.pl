@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 
 use 5.10.0;
-#use CGI;
-#use POSIX;
+# use CGI;
+# use POSIX;
 # use Encode qw(decode_utf8);
 # use Encode qw(decode encode);
 # BEGIN{@ARGV=map Encode::decode($_,1),@ARGV;}
@@ -11,7 +11,7 @@ use 5.10.0;
 # use utf8::all 'GLOBAL';
 # use Encode::Locale;
 # use Encode;
-#use diagnostics;
+# use diagnostics;
 
 
 use strict;
