@@ -63,7 +63,7 @@ sub files_oldest {
         }
     }
 
-    p % days_hash;
+    #p % days_hash;
     print "\n\n";
     print join("\n", @big_old_files);
     print "\n\n";
