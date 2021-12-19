@@ -22,9 +22,11 @@ sub twoNumbers {
     my $secondNumver = <>;
 
     if ( defined($firstNumber) && defined($secondNumver) ) {
-        print"Произведение этих двух чисел равно: " . $firstNumber * $secondNumver . "\n";
+        print"Произведение  этих двух чисел равно : " . $firstNumber * $secondNumver . "\n";
     }
 }
 
+
 twoNumbers();
+
 
