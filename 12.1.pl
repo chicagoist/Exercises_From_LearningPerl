@@ -113,4 +113,8 @@ files_stat();
 # and put "is "  in front, to make a description like is readable and writable.
 # This isn’t perfect, however; if there are three attributes, it says the file is readable and writable
 # and executable, which has too many ands, but we can get away with it. If you wanted to add more
-# attributes to the ones this program checks for, you should
+# attributes to the ones this program checks for, you should probably fix it to say something like is readable,
+# writable, executable, and nonempty. If that matters to you. Note that if you somehow didn’t put any filenames
+# on the command line, this produces no output. This makes sense; if you ask for information on zero files,
+# you should get zero lines of output. But let’s compare that to what the next pro‐ gram does in a similar case,
+# in the explanation that follows.
