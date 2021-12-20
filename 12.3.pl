@@ -34,15 +34,26 @@ use Data::Dumper;
 # файлов для перечисления всех файлов, указанных в командной строке,
 # принадлежащих вам и доступных для чтения и записи.
 
-
-sub files_oldest {
+state @files_O_R_W;
+sub files_group_check {
     chomp(@ARGV);
 
+    foreach (@ARGV) {
+        # say $_;
+        if (-O -R -W $_) {
+            # say $_;
+            push @files_O_R_W, $_;
+        }
+    }
+    # p @files_O_R_W;
 
+    foreach (@files_O_R_W) {
+        printf("File with -O -R -W : %s\n", $_);
+    }
 
 }
 
-files_oldest();
+files_group_check();
 
 
 # Верный ответ из книги:
