@@ -209,4 +209,26 @@ use Data::Dumper;
 
 { # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
 
+    # rename $file, $newfile;
+    # rename "over_there/some/place/some_file", "some_file";
+
+    # часто встречается один вопрос: можно ли переименовать все файлы с расширением .old так,
+    # чтобы они сохранили прежние имена, но получили расширение .new?
+    # Вот как это делается в Perl:
+
+    # foreach my $file (glob "*.old") {
+    #     my $newfile = $file;
+    #     $newfile =~ s/\.old$/.new/;
+    #     if (-e $newfile) {
+    #         warn "can't rename $file to $newfile: $newfile exists\n";
+    #     }
+    #     elsif (rename $file, $newfile) {
+    #         ## Успешное переименование, ничего не делать
+    #     }
+    #     else {
+    #         warn "rename $file to $newfile failed: $!\n";
+    #     }
+    # }
+
+
 }
