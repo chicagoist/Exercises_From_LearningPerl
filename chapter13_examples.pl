@@ -197,4 +197,16 @@ use Data::Dumper;
     chdir $dirname; # without chdir we give: I deleted 0 file(s) in
     my $successful = unlink "slate", "bedrock", "lava";
     print "I deleted $successful file(s) in '$dirname' just now\n";
+
+    # А если функция возвращает 1 или 2? По этому значению невозможно определить, какие файлы были удалены.
+    # Если вас интересует эта информация, удаляйте файлы по одному в цикле:
+    chdir $dirname; # without chdir we give: failed on ...
+     foreach my $file (qw(slate bedrock lava)) {
+         unlink $file or warn "failed on $file: $!\n";
+     }
+}
+
+
+{ # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
+
 }
