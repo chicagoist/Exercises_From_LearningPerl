@@ -23,10 +23,14 @@ binmode(STDOUT, ':utf8');
 use Data::Dumper;
 
 sub show_args {
+    # Команде echo ничего не нужно знать о замене *.pm,
+    # потому что командQ ный процессор уже выполнил ее.
+    # Глобы работают даже в программах Perl:
     foreach my $arg (@ARGV) {
         print "one arg is $arg\n";
     }
 }
 show_args();
 
-
+# Обратите внимание: show_args не нужно ничего знать о
+# глобах – имена уже расширены и занесены в массив @ARGS.
