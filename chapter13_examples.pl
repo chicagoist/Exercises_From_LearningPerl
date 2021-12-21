@@ -236,6 +236,14 @@ use Data::Dumper;
     # функция Perl link  используется для создания новой ссылки:
     my $dirname1 = '/home/legioner/Perl_Projects/Exercises_From_Learning_Perl';
     chdir $dirname1;
-    link 'out.txt', 'out.txt_Hard_Link' or warn "can't link chicken to egg: $!";
+    link 'out.txt', 'out.txt_Hard_Link' or warn "can't link file out.txt to out.txt_Hard_Link: $!";
+    link 'examples', 'examples_Hard_Link' or warn "can't link directory examples to examples_Hard_Link: $!";
     # как если бы вы ввели "ln chicken egg" в приглашении командного процессора UNIX.
+    # Cсылки не могут создаваться для каталогов и не могут вести с одного смонтированного тома на другой.
+
+    # эти ограничения обходятся при помощи другой разновидности: символических ссылок. Символические
+    # ссылки (также  называемые мягкими ссылками, в  отличие от жестких ссылок, о которых мы говорили ранее)
+    # представляют собой специальные записи в каталоге, которые перенаправляют систему к другому месту.
+    symlink 'out.txt', 'out.txt_Soft_Link' or warn "can't link file out.txt to out.txt_Soft_Link: $!";
+    symlink 'examples', 'examples_Soft_Link' or warn "can't link directory examples to examples_Soft_Link: $!";
 }
