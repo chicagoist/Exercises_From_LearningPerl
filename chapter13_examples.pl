@@ -246,4 +246,19 @@ use Data::Dumper;
     # представляют собой специальные записи в каталоге, которые перенаправляют систему к другому месту.
     symlink 'out.txt', 'out.txt_Soft_Link' or warn "can't link file out.txt to out.txt_Soft_Link: $!";
     symlink 'examples', 'examples_Soft_Link' or warn "can't link directory examples to examples_Soft_Link: $!";
+
+    # Чтобы узнать, на какой объект указывает символическая ссылка, воспользуйтесь функцией readlink.
+    # Функция вернет либо информацию о целевом объекте, либо undef, если аргумент не является символической ссылкой:
+    chdir $dirname1;
+    my $where_hard_file_out = readlink 'out.txt_Hard_Link';             # Получаем undef 'hard link'
+    my $where_hard_dir_examples = readlink 'examples_Hard_Link';        # Получаем undef 'hard link'
+    my $where_soft_file_out = readlink 'out.txt_Soft_Link';             # Получаем 'out.txt'
+    my $where_soft_dir_examples = readlink 'examples_Soft_Link';        # Получаем 'examples'
+    my $gcc = readlink '/usr/bin/gcc';  # Получаем  gcc-10
+
+    chdir $dirname1;
+    printf("\$where_hard_file_out = %s\n \$where_hard_dir_examples = %s\n \$where_soft_file_out = %s\n \$where_soft_dir_examples = %s\n",$where_hard_file_out // 'hard link',$where_hard_dir_examples // 'hard link',$where_soft_file_out,$where_soft_dir_examples);
+    printf("\$gcc = %s\n",$gcc);
+
+
 }
