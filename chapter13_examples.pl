@@ -179,8 +179,8 @@ use Bundle::Camelcade;
     # обеспечивающей удобный механизм рекурсивной обработки каталогов.
 }
 
-{
-    # ОПЕРАЦИИ С ФАЙЛАМИ И КАТАЛОГАМИ
+{# ОПЕРАЦИИ С ФАЙЛАМИ И КАТАЛОГАМИ
+
     # Удаление файлов
     # На уровне командного процессора UNIX удаление файла или файлов выполняется командой rm:
     #   $ rm slate bedrock lava
@@ -208,8 +208,7 @@ use Bundle::Camelcade;
 }
 
 
-{
-    # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
+{    # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
 
     my ($file55, $newfile55);
     rename 'file55', 'newfile55';
@@ -234,8 +233,8 @@ use Bundle::Camelcade;
     # }
 }
 
-{
-    # ССЫЛКИ И ФАЙЛЫ
+{    # ССЫЛКИ И ФАЙЛЫ
+
     # функция Perl link  используется для создания новой ссылки:
     my $dirname1 = '/home/legioner/Perl_Projects/Exercises_From_Learning_Perl';
     chdir $dirname1;
@@ -269,9 +268,53 @@ use Bundle::Camelcade;
 
 
 { # СОЗДАНИЕ И УДАЛЕНИЕ КАТАЛОГОВ
+
    p %ENV;
     # Создать новый каталог в существующем каталоге несложно.
     # Просто вызовите функцию mkdir:
-    mkdir "fred", 0755 or warn "Cannot make fred directory: $!";
+     mkdir "fred", 0755 or warn "Cannot make fred directory: $!";
+
+    # такая запись работать не будет:
+    my $name = "fredD";
+    my $permissions = "0755";  # получится but will not work
+    mkdir $name, $permissions;
+
+    # используйте функцию oct, которая обеспечивает восьмеричную интерпретацию строки
+    # независимо от присутствия начального нуля:
+    my $nameDD = "fredDD";
+    mkdir $nameDD, oct($permissions);
+
+    # Необходимость в дополнительной функции oct чаще всего возникает при получении данных от пользователя.
+    # Предположим, аргументы передаются в командной строке:
+    $ARGV[0] = "axel";
+    $ARGV[1] = "0775";
+    my ( $name22, $perm22) = @ARGV;  # Первые два аргумента - имя и разрешения
+    mkdir $name22, oct($perm22)
+        or die "cannot create $name: $!";
+    # Значение $perm изначально задается как строка, поэтому функция oct обеспечивает правильную восьмеричную интерпретацию.
+
+    # Пустые каталоги удаляются функцией rmdir. Функция отчасти напоминает unlink,
+    # но может удалять только один каталог при каждом вызове:
+    foreach my $dir (qw(fredD fredDD axel)) {
+        chdir '/home/legioner/Perl_Projects/Exercises_From_Learning_Perl';
+        rmdir $dir
+            or warn "cannot rmdir $dir: $!\n";  # Deletes the directory specified by FILENAME if that directory is empty.
+    }
+
+    # Если каталог не пуст, попытка вызова rmdir  завершается неудачей.
+    # Сначала следует попытаться удалить содержимое каталога функцией unlink,
+    # а затем попробуйте удалить каталог:
+    my $temp_dir = "/tmp/scratch_$$";       # Определяется по идентификатору
+                                            # процесса; см. в тексте
+    mkdir $temp_dir, 0700 or die "cannot create $temp_dir: $!";
+    open(my $fh, ">", "$temp_dir/output.txt")
+        or die "Can't open > $temp_dir./output.txt: $!";
+
+    print $fh "This line gets printed into output.txt.\n";
+       # ...
+       # Каталог $temp_dir используется для хранения всех временных файлов
+       #...
+    # unlink glob "$temp_dir/* $temp_dir/.*"; # Удалить содержимое $temp_dir
+    rmdir $temp_dir or warn "cannot remove $temp_dir: $!";  # Удалить пустой каталог
 
 }
