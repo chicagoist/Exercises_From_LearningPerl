@@ -209,7 +209,8 @@ use Data::Dumper;
 
 { # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
 
-    # rename $file, $newfile;
+    my($file55, $newfile55);
+    rename 'file55', 'newfile55';
     # rename "over_there/some/place/some_file", "some_file";
 
     # часто встречается один вопрос: можно ли переименовать все файлы с расширением .old так,
@@ -232,6 +233,9 @@ use Data::Dumper;
 }
 
 { # ССЫЛКИ И ФАЙЛЫ
-
-
+    # функция Perl link  используется для создания новой ссылки:
+    my $dirname1 = '/home/legioner/Perl_Projects/Exercises_From_Learning_Perl';
+    chdir $dirname1;
+    link 'out.txt', 'out.txt_Hard_Link' or warn "can't link chicken to egg: $!";
+    # как если бы вы ввели "ln chicken egg" в приглашении командного процессора UNIX.
 }
