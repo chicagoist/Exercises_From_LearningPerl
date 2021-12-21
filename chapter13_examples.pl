@@ -21,6 +21,7 @@ binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use DDP;
 use Data::Dumper;
+use Bundle::Camelcade;
 
 
 # ОПЕРАЦИИ С КАТАЛОГАМИ
@@ -72,7 +73,7 @@ use Data::Dumper;
             @all_files = glob "~/Perl_Projects/Exercises_From_Learning_Perl/.*";
             @pl_files = glob "~/Perl_Projects/Exercises_From_Learning_Perl/*.pl";
             @pm_files = glob "~/Perl_Projects/Exercises_From_Learning_Perl/*.pm";
-            #@pl_files   = glob "* *.pl";
+            #@pl_files     = glob "* *.pl";
         }
 
         print join("\n", @all_files) . "\n";
@@ -201,15 +202,16 @@ use Data::Dumper;
     # А если функция возвращает 1 или 2? По этому значению невозможно определить, какие файлы были удалены.
     # Если вас интересует эта информация, удаляйте файлы по одному в цикле:
     chdir $dirname; # without chdir we give: failed on ...
-     foreach my $file (qw(slate bedrock lava)) {
-         unlink $file or warn "failed on $file: $!\n";
-     }
+    foreach my $file (qw(slate bedrock lava)) {
+        unlink $file or warn "failed on $file: $!\n";
+    }
 }
 
 
-{ # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
+{
+    # ПЕРЕИМЕНОВАНИЕ ФАЙЛОВ
 
-    my($file55, $newfile55);
+    my ($file55, $newfile55);
     rename 'file55', 'newfile55';
     # rename "over_there/some/place/some_file", "some_file";
 
@@ -232,7 +234,8 @@ use Data::Dumper;
     # }
 }
 
-{ # ССЫЛКИ И ФАЙЛЫ
+{
+    # ССЫЛКИ И ФАЙЛЫ
     # функция Perl link  используется для создания новой ссылки:
     my $dirname1 = '/home/legioner/Perl_Projects/Exercises_From_Learning_Perl';
     chdir $dirname1;
@@ -250,15 +253,25 @@ use Data::Dumper;
     # Чтобы узнать, на какой объект указывает символическая ссылка, воспользуйтесь функцией readlink.
     # Функция вернет либо информацию о целевом объекте, либо undef, если аргумент не является символической ссылкой:
     chdir $dirname1;
-    my $where_hard_file_out = readlink 'out.txt_Hard_Link';             # Получаем undef 'hard link'
-    my $where_hard_dir_examples = readlink 'examples_Hard_Link';        # Получаем undef 'hard link'
-    my $where_soft_file_out = readlink 'out.txt_Soft_Link';             # Получаем 'out.txt'
-    my $where_soft_dir_examples = readlink 'examples_Soft_Link';        # Получаем 'examples'
-    my $gcc = readlink '/usr/bin/gcc';  # Получаем  gcc-10
+    my $where_hard_file_out = readlink 'out.txt_Hard_Link';      # Получаем undef 'hard link'
+    my $where_hard_dir_examples = readlink 'examples_Hard_Link'; # Получаем undef 'hard link'
+    my $where_soft_file_out = readlink 'out.txt_Soft_Link';      # Получаем 'out.txt'
+    my $where_soft_dir_examples = readlink 'examples_Soft_Link'; # Получаем 'examples'
+    my $gcc = readlink '/usr/bin/gcc';                           # Получаем  gcc-10
 
     chdir $dirname1;
-    printf("\$where_hard_file_out = %s\n \$where_hard_dir_examples = %s\n \$where_soft_file_out = %s\n \$where_soft_dir_examples = %s\n",$where_hard_file_out // 'hard link',$where_hard_dir_examples // 'hard link',$where_soft_file_out,$where_soft_dir_examples);
-    printf("\$gcc = %s\n",$gcc);
+    printf("\$where_hard_file_out = %s\n \$where_hard_dir_examples = %s\n \$where_soft_file_out = %s\n \$where_soft_dir_examples = %s\n", $where_hard_file_out // 'hard link', $where_hard_dir_examples // 'hard link', $where_soft_file_out, $where_soft_dir_examples);
+    printf("\$gcc = %s\n", $gcc);
 
+    # Обе разновидности ссылок удаляются функцией unlink. Функция просто удаляет запись каталога,
+    # связанную с именем файла, с уменьшением счетчика ссылок и, возможно, с освобождением индексного узла.
+}
+
+
+{ # СОЗДАНИЕ И УДАЛЕНИЕ КАТАЛОГОВ
+   p %ENV;
+    # Создать новый каталог в существующем каталоге несложно.
+    # Просто вызовите функцию mkdir:
+    mkdir "fred", 0755 or warn "Cannot make fred directory: $!";
 
 }
