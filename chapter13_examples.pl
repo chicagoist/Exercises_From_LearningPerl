@@ -337,13 +337,27 @@ use Bundle::Camelcade;
     # использовать вместо числа имя пользователя (например, merlyn)? Легко.
     # Вызовите функцию getpwnam, чтобы преобразовать имя пользователя в числовой код,
     # а затем функцию getgrnam , чтобы преобразовать название группы в число:
-    defined(my $userR = getpwnam "merlyn") or die "bad user";
-    defined(my $groupP = getgrnam "users") or die "bad group";
-    chown $userR, $groupP, glob "/home/merlyn/*";
+    defined(my $userR = getpwnam "legioner") or die "bad user";
+    defined(my $groupP = getgrnam "sudo") or die "bad group";
+    # open(my $change_file, ">", "/home/legioner/changeUser/blob");
+    open(my $change_file, ">", "blob");
+    chown $userR, $groupP, glob "blob";
+    close($change_file);
 }
 
 { # ИЗМЕНЕНИЕ ВРЕМЕННЫХ МЕТОК
 
+    # Допустим, вы хотите, чтобы все файлы в текущем каталоге выглядели так,
+    # словно они были созданы сутки назад, а первое обращение к ним произошло только сейчас.
+    # Это делается так:
+    my $now = time;
+    my $ago = $now - 24 * 60 * 60;  # Количество секунд в сутках
+    chdir '/home/legioner/Perl_Projects/Exercises_From_Learning_Perl';
+    utime $now, $ago, glob "*.txt";     # Время последнего обращения - сейчас, модификация - сутки назад
+    say "time";
 
+    # В первых двух аргументах передается новое время последнего обращения и модификации,
+    # а остальные аргументы содержат списки имен файлов, которым назначаются эти временные
+    # метки. Время задается во внутреннем формате (значения, возвращаемые функцией stat
 
 }
