@@ -52,15 +52,22 @@ sub change_dir {
     print "Please, change to directory : ";
 
     chomp(my $new_dir = <STDIN>);
-
-   #  say $new_dir;
-
     chdir $new_dir;
-    opendir(my $dh, $new_dir) || die "Can't open $new_dir: $!";
-    while (readdir $dh) {
-        print "$new_dir/$_\n";
-    }
+    my $dh;
 
+    if ( $new_dir =~ /^\s*$/ ) {
+        $new_dir = "/home/$ENV{USER}";
+        opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
+        while ( readdir $dh) {
+            print "$new_dir/$_\n" if !/^\.{1}/;
+        }
+    }else {
+        opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
+        while (readdir $dh) {
+            print "$new_dir/$_\n" if !/^\.{1}/;
+        }
+    }
+    close $dh;
 }
 
 change_dir();
@@ -68,4 +75,24 @@ change_dir();
 
 # Верный ответ из книги:
 
-#
+# Here’s one way to do it, with a glob:
+
+# print "Which directory? (Default is your home directory) ";
+# chomp(my $dir = <STDIN>);
+# if ($dir =~ /\A\s*\z/) {         # A blank line
+#    chdir or die "Can't chdir to your home directory: $!";
+# } else {
+#    chdir $dir or die "Can't chdir to '$dir': $!";
+# }
+# my @files = <*>;
+# foreach (@files) {
+#    print "$_\n";
+# }
+
+# First, we show a simple prompt, read the desired directory, and chomp  it.
+# (Without a chomp, we’d be trying to head for a directory that ends in a newline - legal
+# in Unix, and therefore cannot be presumed to simply be extraneous by the chdir function.)
+# Then, if the directory name is nonempty, we’ll change to that directory, aborting on a
+# failure. If empty, the home directory is selected instead. Finally, a glob  on “star”
+# pulls up all the names in the (new) working directory, automatically sorted in alphabetical order,
+# and they’re printed one at a time.
