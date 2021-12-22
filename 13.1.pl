@@ -49,25 +49,32 @@ use Data::Dumper;
 # но не пытайтесь выводить содержимое.
 
 sub change_dir {
-    print "Please, change to directory : ";
-
+    print "Please, select your directory : ";
     chomp(my $new_dir = <STDIN>);
-    chdir $new_dir;
     my $dh;
 
-    if ( $new_dir =~ /^\s*$/ ) {
-        $new_dir = "/home/$ENV{USER}";
-        opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
-        while ( readdir $dh) {
-            print "$new_dir/$_\n" if !/^\.{1}/;
-        }
-    }else {
-        opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
-        while (readdir $dh) {
-            print "$new_dir/$_\n" if !/^\.{1}/;
+    if ($new_dir =~ /^\s*$/) { # if value only with spaces
+        $new_dir = "/home/$ENV{USER}"; # directory : /home/{and user}, who launch this script
+        opendir($dh, $new_dir) || die "Can't open $new_dir: $!"; # open our directory
+        while (readdir $dh) { # read directory with alphabetical
+            print "$new_dir/$_\n" if !/^\.{1}/; # print names of file's and directory's without DOTs.
         }
     }
-    close $dh;
+    elsif ($new_dir =~ /^(\/.*)\/+$/) { # if name of directory contains last character "\"
+        $new_dir =~ s/^(\/.*)\/+$/$1/; # remove last "\"
+        opendir($dh, $new_dir) || die "Can't open $new_dir: $!"; # open our directory
+        while (readdir $dh) {
+            print "$new_dir/$_\n" if !/^\.{1}/; # print names of file's and directory's without DOTs and without double slash like "/var/log//log"
+        }
+    }
+    elsif ($new_dir =~ /^(\/.*)$/) {  # if normal directory's name without last "/" and no spaces
+        opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
+        while (readdir $dh) {
+            print "$new_dir/$_\n" if !/^\.{1}/;  # print names of file's and directory's without DOTs
+        }
+    }
+
+    close $dh; # close any of directories
 }
 
 change_dir();
