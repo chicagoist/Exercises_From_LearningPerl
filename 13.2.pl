@@ -40,7 +40,7 @@ use Data::Dumper;
 
 =cut
 
-#  Измените программу так 13.1.pl, чтобы она выводила информацию обо всех файлах
+#  Измените программу 13.1.pl так, чтобы она выводила информацию обо всех файлах
 # (в том числе и тех, имена которых начинаются с точки).
 
 sub change_dir {
@@ -56,14 +56,14 @@ sub change_dir {
         }
 
     }
-    elsif ($new_dir =~ s/^(\/.*\/*)\/+$/$1/) { # if name of directory contains last character "/"
+    elsif ($new_dir =~ s/^(\/.*\/*)\/+$/$1/) { # if name of directory contains last character "/var/log/"
         $new_dir =~ s/^(\/.*\/*)\/+$/$1/; # remove last "/"
         opendir($dh, $new_dir) || die "Can't open $new_dir: $!"; # open our directory
         while (readdir $dh) { # read directory with alphabetical
             print <$new_dir/.* $new_dir/*> . "\n"; # print ALL names of file's and directory's with AND without DOTs.
         }
     }
-    elsif ($new_dir =~ /^(\/.*)$/) {  # if normal directory's name without last "/" and no spaces
+    elsif ($new_dir =~ /^(\/.*)$/) {  # if normal directory's name without last "/var/log" and no spaces
         opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
         while (readdir $dh) { # read directory with alphabetical
             print <$new_dir/.* $new_dir/*> . "\n"; # print ALL names of file's and directory's with AND without DOTs.
