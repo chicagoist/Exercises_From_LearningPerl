@@ -2,7 +2,6 @@
 
 use 5.10.0;
 # use CGI;
-# use POSIX;
 # use Encode qw(decode_utf8);
 # use Encode qw(decode encode);
 # BEGIN{@ARGV=map Encode::decode($_,1),@ARGV;}
@@ -45,56 +44,34 @@ use Data::Dumper;
 # (Поддерживать различные ключи rm не нужно.)
 
 sub rm_file {
-    print "Please, select your directory : ";
-    chomp(my $new_dir = <STDIN>);
-    my $dh;
+    use POSIX;
+    my $dir;
 
-    if ($new_dir =~ /^\s*$/) { # if value only with spaces
-        $new_dir = "/home/$ENV{USER}"; # directory : /home/{and user}, who launch this script
-        opendir($dh, $new_dir) || die "Can't open $new_dir: $!"; # open our directory
-         while (readdir $dh) { # read directory with alphabetical
-             print "$new_dir/$_\n" if /^.*/; # print ALL names of file's and directory's with AND without DOTs.
+    ($^O =~ /Win32/) ? ($dir = getcwd) =~ s/\//\\/g : ($dir = getcwd); # Account for / and \ on Win32 and non-Win32 systems
+    chdir $dir;
+    chomp(@ARGV);
+
+    foreach my $file_for_rm (@ARGV) {
+        print "'$file_for_rm'  ready to REMOVE the file? [yes/NO]"
+            if (-e $file_for_rm && -w _ && -r _ && -o _) or die "OR file not exist or you have no permission to remove $!\n";
+
+        chomp (my $yesORno = <STDIN>)
+            if (-e $ARGV[0] && -w _ && -r _ && -o _) or die $!;
+
+        if ($yesORno =~ /[y|yes]/i) {
+            unlink $file_for_rm;
+            print "This file  '$file_for_rm'  is REMOVED !\n";
+            exit;
+
+        }else {
+            print "CANCELED\n";
+            exit;
         }
-        close $dh; # close opened directory
-
-    }elsif ($new_dir =~ s/^(\/.*\/*)\/+$/$1/) { # if name of directory contains last character "/var/log/"
-        $new_dir =~ s/^(\/.*\/*)\/+\z/$1/g; # remove last "/"
-        opendir($dh, $new_dir) || die "Can't open $new_dir: $!"; # open our directory
-        while (readdir $dh) { # read directory with alphabetical
-            print "$new_dir/$_\n" if /^.*/; # print ALL names of file's and directory's with AND without DOTs.
-        }
-        close $dh; # close opened directory
-
-    }elsif ($new_dir =~ /^(\/.*)$/) {  # if normal directory's name without last "/var/log" and no spaces
-        opendir($dh, $new_dir) || die "Can't open $new_dir: $!";
-        while (readdir $dh) { # read directory with alphabetical
-            print "$new_dir/$_\n" if /^.*/; # print ALL names of file's and directory's with AND without DOTs.
-        }
-        close $dh; # close opened directory
-
     }
 }
 
-rm_file();
-
+&rm_file;
 
 # Верный ответ из книги:
 
-# Here’s one way to do it:
-# print "Which directory? (Default is your home directory) ";
-# chomp(my $dir = <STDIN>);
-# if ($dir =~ /\A\s*\z/) { # A blank line
-#     chdir or die "Can't chdir to your home directory: $!";
-# }
-# else {
-#     chdir $dir or die "Can't chdir to '$dir': $!";
-# }
-# my @files = <.* *>;     ## now includes .*
-# foreach (sort @files) { ## now sorts
-#     print "$_\n";
-# }
-# Two differences from previous one. First, the glob now includes “dot star,”
-# which matches all the names that do  begin with a dot. And second, we now must
-# sort the resulting list because some of the names that begin with a dot must be
-# inter‐leaved appropriately, either before or after the list of things, without
-# a beginning dot.
+#
