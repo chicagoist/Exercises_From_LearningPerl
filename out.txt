@@ -25,6 +25,7 @@ prime.pl
 README.md
 ringLeght.pl
 second.txt
+from ~/
 stringAndNumber.pl
 test2.1_1.pl
 test2.1_2.pl
@@ -32,3 +33,5 @@ third.txt
 twoNumbers.pl
 .vscode
 34
+# from Perl Project
+NO! Now file from ~/
