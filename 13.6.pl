@@ -48,7 +48,7 @@ use Data::Dumper;
 # это сэкономит ваше время при кодировании.)
 
 sub ln_hard {
-    use POSIX;     # to get getcwd
+    use POSIX; # to get getcwd
     use File::Basename;
     use File::Spec;
 
@@ -66,21 +66,16 @@ sub ln_hard {
     chomp(my $yesORno = <STDIN>);
 
     if ($yesORno =~ /[y|yes]/i) {
-        unlink $link_dest;                                                     # unlink if target exists already
-        link $source, $link_dest                                               # link same like ln
-            or die "Can't rename '$source' to '$link_dest': $!\n";
-        print "The file '$ARGV[0]' is LINKED now to '$link_dest' !\n";              # print that file was moved
-        exit;                                                                   # exit from the script
-
+        unlink $link_dest;       # unlink if target exists already
+        link $source, $link_dest # link same like ln
+            or die "Can't links '$ARGV[0]' to '$link_dest': $!";
+        print "The file '$ARGV[0]' is LINKED now to '$link_dest' !\n"; # print that file was moved
+        exit;                                                          # exit from the script
     }
     else {
         print "CANCELED\n"; # if not yes, not YES, not Y, not y or some other
         exit;               # Goodbye the script/
     }
-
-
-
-
 
 }
 ln_hard();
