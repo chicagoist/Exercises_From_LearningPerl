@@ -46,10 +46,26 @@ use Data::Dumper;
 
 sub ln_search {
     use POSIX; # to get getcwd
-    use File::Basename;
-    use File::Spec;
+    my $dir;
 
+    ($^O =~ /Win32/) ? ($dir = getcwd) =~ s/\//\\/g : ($dir = getcwd); # Account for / and \ on Win32 and non-Win32 systems
+    chdir $dir;
+    chomp(@ARGV);
 
+    foreach (@ARGV) {
+        if (readlink $_) {
+            #(my $read_dest = readlink $_) =~ s/\/\//\//g; # without the regex we have double slashes: "Learning_Perl//home/user/error.txt"
+            (my $read_dest = readlink $_) =~ s/$dir\///g; # without the regex we have double slashes: "//home/user/error.txt"
+
+            print "$_ -> " , $read_dest , "\n";
+        }
+        # OUT must like that:
+
+        # 8.1_for_debug.pl_LINK -> 8.1_for_debug.pl
+        # examples_Soft_Link -> examples
+        # out.txt_Soft_Link -> out.txt
+        # symlink_error.txt -> /home/user/error.txt
+    }
 
 }
 ln_search();
