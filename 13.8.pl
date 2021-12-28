@@ -10,6 +10,7 @@ use 5.10.0;
 # use utf8::all 'GLOBAL';
 # use Encode::Locale;
 # use Encode;
+# use Time::Moment;
 # use diagnostics;
 
 
@@ -20,7 +21,7 @@ binmode(STDIN, ':utf8');
 binmode(STDOUT, ':utf8');
 use DDP;
 use Data::Dumper;
-# use Time::Moment;
+
 
 
 # File 13.8.pl
@@ -56,15 +57,8 @@ sub ln_search {
         if (readlink $_) {
             #(my $read_dest = readlink $_) =~ s/\/\//\//g; # without the regex we have double slashes: "Learning_Perl//home/user/error.txt"
             (my $read_dest = readlink $_) =~ s/$dir\///g; # without the regex we have double slashes: "//home/user/error.txt"
-
             print "$_ -> " , $read_dest , "\n";
         }
-        # OUT must like that:
-
-        # 8.1_for_debug.pl_LINK -> 8.1_for_debug.pl
-        # examples_Soft_Link -> examples
-        # out.txt_Soft_Link -> out.txt
-        # symlink_error.txt -> /home/user/error.txt
     }
 
 }
@@ -72,6 +66,12 @@ ln_search();
 
 =begin text
 
+        # OUT must like that:
+
+        8.1_for_debug.pl_LINK -> 8.1_for_debug.pl
+        examples_Soft_Link -> examples
+        out.txt_Soft_Link -> out.txt
+        symlink_error.txt -> /home/user/error.txt
 
 =end text
 
@@ -80,4 +80,14 @@ ln_search();
 
 # Верный ответ из книги:
 
-#
+# Here’s one way to do it:
+
+# foreach ( glob( '.* *' ) ) {
+# my $dest = readlink $_;
+# print "$_ -> $dest\n" if defined $dest;
+# }
+
+# Each item resulting from the glob ends up in $_
+# one by one. If the item is a symbolic link, then readlink
+# returns a defined value, and the location is displayed.
+# If not, the condition fails and we skip over it.
