@@ -49,67 +49,7 @@ sub ln_search {
     use File::Basename;
     use File::Spec;
 
-    my $basename;
-    my $source;
-    my $link_dest;
-    my $dir;
 
-    ($^O =~ /Win32/) ? ($dir = getcwd) =~ s/\//\\/g : ($dir = getcwd); # Account for / and \ on Win32 and non-Win32 systems
-    chdir $dir; # Без полного пути к источнику, не создавалась soft link
-
-    if ($ARGV[0] eq '-s') {
-        $source = $ARGV[1];
-        $link_dest = $ARGV[2];
-    }
-    else {
-        ($source, $link_dest) = @ARGV;
-    }
-
-    if (-d $link_dest) {
-        $basename = basename $source;
-        $link_dest = File::Spec->catfile($link_dest, $basename);
-    }
-
-    if ($ARGV[0] eq '-s') {
-        print "1. Do you want SYMLINK file '$source' to the '$link_dest' [yes/NO] ? "
-            if !(-e $link_dest); # if target file doesn't exist
-        print "2. Do you want REWRITE file '$link_dest' with '$source' [yes/NO] ? "
-            if (-e $link_dest); # if target file already exists
-        chomp(my $yesORno = <STDIN>);
-
-        if ($yesORno =~ /[y|yes]/i) {
-            unlink $link_dest;                            # unlink if target exists already
-            $source = File::Spec->catfile($dir, $source); # Странно, но без этого выражения, не создавалась soft link
-            symlink $source, $link_dest                   # link same like ln -s
-                or die "Can't symlinks '$source' to '$link_dest': $!";
-            print "The file '$source' is SYMLINKED now to '$link_dest' !\n"; # print that file was moved
-            exit;                                                            # exit from the script
-        }
-        else {
-            print "CANCELED\n"; # if not yes, not YES, not Y, not y or some other
-            exit;               # Goodbye the script/
-        }
-
-    }
-
-    print "3. Do you want hard link file '$source' to the '$link_dest' [yes/NO] ? "
-        if !(-e $link_dest); # if target file doesn't exist
-    print "4. Do you want REWRITE file '$link_dest' with '$source' [yes/NO] ? "
-        if (-e $link_dest); # if target file already exists
-
-    chomp(my $yesORno = <STDIN>);
-
-    if ($yesORno =~ /[y|yes]/i) {
-        unlink $link_dest;       # unlink if target exists already
-        link $source, $link_dest # link same like ln
-            or die "Can't hard links '$source' to '$link_dest': $!";
-        print "The file '$source' is HARD LINKED now to '$link_dest' !\n"; # print that file was moved
-        exit;                                                              # exit from the script
-    }
-    else {
-        print "CANCELED\n"; # if not yes, not YES, not Y, not y or some other
-        exit;               # Goodbye the script/
-    }
 
 }
 ln_search();
