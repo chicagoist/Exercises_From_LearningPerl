@@ -231,4 +231,5 @@ use Bundle::Camelcade;
         or $a cmp $b   # ASCII-алфавитная сортировка по именам
         }
     print "\@winners => @winners\n";
+
 }
