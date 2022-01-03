@@ -14,6 +14,14 @@ binmode(STDOUT, ':utf8');
 use utf8;
 use warnings;
 
+=begin text
+
+ Subroutine for require in Chapter 15
+
+=end text
+
+=cut
+
 
 use experimental qw(signatures);
 sub max(@rest) {
