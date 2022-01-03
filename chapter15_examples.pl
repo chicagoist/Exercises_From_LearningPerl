@@ -88,7 +88,7 @@ use Bundle::Camelcade;
     $names2[1] = "Fred";
     $names2[2] = "Wilma";
 
-    foreach my $index (0 .. @names1-1) {
+    foreach my $index (0 .. @names1 - 1) {
         # print "$names1[$index]\n";
         # print "$names2[$index]\n";
         last unless $names1[$index] eq $names2[$index];
@@ -99,4 +99,21 @@ use Bundle::Camelcade;
     #  Следующий небольшой фрагмент делает то же, что и предыдущий пример, но с
     # минимумом программного кода:
     say "The arrays have the same elements!" if @names1 ~~ @names2;
+
+    # Вспомните функцию max() из главы 4: она всегда должна возвращать одно
+    # из переданных ей значений. Что-бы убедиться в этом, можно проверить
+    # возвращаемое  значение max  по списку аргументов «вручную», как это
+    # делалось в предыдущих трудных решениях:
+    #use experimental qw(signatures);
+    require '/home/user/Perl_Projects/Exercises_From_Learning_Perl/4.1_max.pl';
+
+    my @nums = qw(1 2 3 27 42);
+    my $result = max(@nums);
+    my $flagG = 0;
+    foreach my $num (@nums) {
+        next unless $result == $num;
+        $flagG = 1;
+        last;
+    }
+    print "The result is one of the input values\n" if $flagG;
 }
