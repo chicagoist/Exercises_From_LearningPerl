@@ -116,4 +116,10 @@ use Bundle::Camelcade;
         last;
     }
     print "The result is one of the input values\n" if $flagG;
+
+    # Оператор ~~ позволяет исключить из этого кода весь средний фрагмент.
+    # Решение заметно упрощается:
+    my @numsS   = qw( 1 2 3 27 44 );
+    my $resultT = max(@numsS);
+    say "The result [$resultT] is one of the input values (@numsS)" if $resultT ~~  @numsS;
 }
