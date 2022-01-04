@@ -221,21 +221,92 @@ use Bundle::Camelcade;
     }
 }
 
-{# ОБЫЧНОЕ СРАВНЕНИЕ
+{
+    # ОБЫЧНОЕ СРАВНЕНИЕ
     # Наряду с умным сравнением в given-when  также можно использовать обычные,
     # «глупые» сравнения. Конечно, ничего плохого в них нет, просто это
     # самые обычные поиски совпадений по регулярным выражениям, которые вам уже известны.
     use experimental 'switch';
 
-    given( $ARGV[0] ) {
-        when( /fred/i )       { #smart
-            say '5Name has fred in it'; continue }
-        when( $_ =~ /^Fred/ ) { #dumb
-            say '5Name starts with Fred'; continue }
-        when( 'Fred'  )       { #smart
-            say '5Name is Fred' }
-        default               { say "5I don't see a Fred" }
+    given ($ARGV[0]) {
+        when (/fred/i) {
+            #smart
+            say '5Name has fred in it';
+            continue
+        }
+        when ($_ =~ /^Fred/) {
+            #dumb
+            say '5Name starts with Fred';
+            continue
+        }
+        when ('Fred') { #smart
+            say '5Name is Fred'}
+        default {say "5I don't see a Fred"}
     }
 
+    sub name_has_fred {
+        use experimental 'switch';
+
+        given ($_) {
+            when (/fred/i) {
+                #smart
+                return $_;
+                continue
+            }
+            when ($_ =~ /^Fred/) {
+                #dumb
+                return $_;
+                continue
+            }
+            when ('Fred') { #smart
+                return $_;
+            }
+            default {
+                return -1;
+            }
+        }
+    }
+    # Оператор умного сравнения ищет совпадения (полные или частичные),
+    # поэтому он не работает для сравнений типа «больше» или «меньше».
+    # В таких случаях необходимо использовать традиционные операторы сравнения:
+    given ($ARGV[1]) {
+        when (/^-?\d+\.\d+$/) { # Умное сравнение
+            say 'Not a number!'}
+        when ($_ > 10) { # Обычное сравнение
+            say 'Number is greater than 10'}
+        when ($_ < 10) { # Обычное сравнение
+            say 'Number is less than 10'}
+        default {say 'Number is 10'}
+    }
+
+    # В некоторых ситуациях Perl автоматически использует обычные сравнения.
+    # Например, если в when включается результат вызова пользовательской функции ,
+    # Perl использует логическое значение (true/false) возвращаемого значения:
+    given ($ARGV[0]) {
+        when (name_has_fred($_)) {
+            # Обычное сравнение
+            say 'sub Try search fred in subroutine name_has_fred()';
+            continue
+        }
+    }
+    print name_has_fred($_), "\n";
+
+
+    # Правило о вызове функции распространяется и на встроенные функции Perl
+    # defined, exists и eof, возвращающие логический результат.
+    # Умное сравнение также не используется для инвертированных выражений,
+    # включая инвертированные регулярные выражения. Эти случаи ничем не
+    # отличаются от условий управляющих конструкций, представленных в предыдущих
+    # главах:
+    given ($ARGV[0]) {
+        when (! my $boolean) { # Обычное сравнение
+            say 'boolean false Name has fred in it';}
+        when (! /fred/) { # Обычное сравнение
+            say 'Does not match Fred';}
+    }
+
+}
+
+{# УСЛОВИЯ when С НЕСКОЛЬКИМИ ЭЛЕМЕНТАМИ
 
 }
