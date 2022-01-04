@@ -172,4 +172,70 @@ use Bundle::Camelcade;
     # switch  языка C; но, как и многие конструкции Perl, given обладает
     # оригинальными возможностями, поэтому ей присваивается оригинальное имя.
 
+    use experimental 'switch';
+
+    given( $ARGV[0] ) {
+        when (/fred/ig) {say '1Name has fred in it'}
+        when (/^Fred/) {say '1Name starts with Fred'}
+        when ('Fred') {say '1Name is Fred'}
+        default {say "1I don't see a Fred"}
+    }
+
+    # этот пример с if-elsif-else».
+    # В следующем примере именно это и делается с использованием
+    # переменной $_:
+    {
+        $_ = $ARGV[0]; # lexical $_ as of 5.10!
+        if( $_ ~~ /fred/i ) { say 'ifName has fred in it' }
+        elsif( $_ ~~ /^Fred/ ) { say 'ifName starts with Fred' }
+        elsif( $_ ~~ 'Fred'  ) { say 'ifName is Fred' }
+        else                   { say "ifI don't see a Fred" }
+    }
+
+    # Если не принять специальные меры, в конец каждого блока включается
+    # неявная команда break, которая приказывает Perl прервать обработку
+    # given-when  и продолжить выполнение программы. Таким образом,
+    # предыдущий пример содержал команды break, хотя  вам и не пришлось
+    # вводить их самостоятельно:
+    given( $ARGV[0] ) {
+        when( $_ ~~ /fred/i ) { say '3Name has fred in it'; break }
+        when( $_ ~~ /^Fred/ ) { say '3Name starts with Fred'; break }
+        when( $_ ~~ 'Fred'  ) { say '3Name is Fred'; break }
+        default               { say "3I don't see a Fred"; break }
+    }
+
+    # Но если завершить блок when  ключевым словом continue,
+    # Perl даже в случае выполнения условия перейдет к следующему условию,
+    # и весь процесс повторится заново. Конструкция if-elsif-else на такое
+    # не способна. Если другое условие  when  окажется истинным,
+    # Perl выполняет его блок (снова неявно завершаемый командой break,
+    # если в программе явно не указано обратное). Если добавить continue
+    # в конец каждого блока, Perl опробует все условия:
+    given( $ARGV[0] ) {
+        when( 'Fred'  ) { say '4Name is Fred'; continue } # OOPS!
+        when( 'Fred'  ) { say '4Name is Fred'; continue } # OK now!
+        when( /fred/ig ) { say '4Name has fred in it'; continue }
+        when( /^Fred/ ) { say '4Name starts with Fred' }
+
+        default               { say "4I don't see a Fred" }
+    }
+}
+
+{# ОБЫЧНОЕ СРАВНЕНИЕ
+    # Наряду с умным сравнением в given-when  также можно использовать обычные,
+    # «глупые» сравнения. Конечно, ничего плохого в них нет, просто это
+    # самые обычные поиски совпадений по регулярным выражениям, которые вам уже известны.
+    use experimental 'switch';
+
+    given( $ARGV[0] ) {
+        when( /fred/i )       { #smart
+            say '5Name has fred in it'; continue }
+        when( $_ =~ /^Fred/ ) { #dumb
+            say '5Name starts with Fred'; continue }
+        when( 'Fred'  )       { #smart
+            say '5Name is Fred' }
+        default               { say "5I don't see a Fred" }
+    }
+
+
 }
