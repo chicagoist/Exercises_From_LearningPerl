@@ -330,4 +330,18 @@ use Bundle::Camelcade;
     }
 
 
+    # Дополнительные команды даже  могут располагаться между блоками when,
+    # например команда вывода отладочной информации при входе в default
+    # (то же самое можно сделать и с given):
+
+    foreach ( @ARGV ) { # Не используем именованную переменную!
+    say "\nProcessing [$_]";
+
+    when( /fred/i ) { say '7 Name has fred in it'; continue }
+    when( /^Fred/ ) { say '7 Name starts with Fred'; continue }
+    when( 'Fred'  ) { say '7 Name is Fred'; }
+    say "7 Moving on to default...'$_'";
+
+    default         { say "7 I don't see a Fred" }
+    }
 }
