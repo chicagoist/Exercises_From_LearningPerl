@@ -71,9 +71,9 @@ sub divisors_of_number {
 
     for(@divisors_of_argv){
         given ($_){
-        when($_ == $ARGV[0] || $ARGV[0] == 1) {say "кроме $ARGV[0]"; exit}
-        when($_ == 0 ) {say "число является простым (т. е. не имеет таких делителей)"; exit}
-        when($_ != 0 ) {print "Divisors of $ARGV[0] : " , join(", ", @divisors_of_argv), "\n"; exit}
+         when($_ == $ARGV[0] || $ARGV[0] == 1) {say "кроме $ARGV[0]"; exit}
+         when($_ == 0 ) {say "число является простым (т. е. не имеет таких делителей)"; exit}
+         when($_ != 0 ) {print "Divisors of $ARGV[0] : " , join(", ", @divisors_of_argv), "\n"; exit}
         }
     }
 }
