@@ -40,18 +40,31 @@ use Data::Dumper;
 sub divisible_int {
     use experimental 'switch'; # require for given-when
 
+   my $divisible_int = int(1 + rand(1000)); # random integer from 0 to 1000
+   # my $divisible_int = 105;
+   print "\$divisible_int = $divisible_int\n"; # print random number for divisible
 
-}
+        given ($divisible_int) {
+            when (!$divisible_int =~ /^-?\d+$/) {
+                print "[$_] - Please try again one more time";
+                exit
+            } # if not number
+            when ($divisible_int % 105 == 0) {
+                print " 'Fizz Bin Sausage'\n";
+                break
+            }
+            when ($divisible_int % 3 == 0) {print " 'Fizz' "}
+            when ($divisible_int % 5 == 0) {print " 'Bin' "}
+            when ($divisible_int % 7 == 0) {print " 'Sausage' "}
+            default {print "Try again one more time\n"}
+        }
+    }
 
 divisible_int();
 
 =begin text
 
  $ perl 15.2.pl
-
-
-
-
 
 
 =end text
@@ -61,4 +74,13 @@ divisible_int();
 
 # Верный ответ из книги:
 
-#
+# Одно из возможных решений:
+#  for (1 .. 105) {
+#    my $what = '';
+#    given ($_) {
+#        when (not $_ % 3) { $what .= ' fizz'; continue }
+#        when (not $_ % 5) { $what .= ' buzz'; continue }
+#        when (not $_ % 7) { $what .= ' sausage' }
+#    }
+#    say "$_$what";
+# }
