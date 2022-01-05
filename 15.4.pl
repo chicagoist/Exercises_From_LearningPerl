@@ -70,7 +70,7 @@ sub divisors_of_number {
     use experimental 'switch'; # require for given
 
     for(@divisors_of_argv){
-        given ($_){
+        given ($_) {
          when($_ == $ARGV[0] || $ARGV[0] == 1) {say "кроме $ARGV[0]"; exit}
          when($_ == 0 ) {say "число является простым (т. е. не имеет таких делителей)"; exit}
          when($_ != 0 ) {print "Divisors of $ARGV[0] : " , join(", ", @divisors_of_argv), "\n"; exit}
