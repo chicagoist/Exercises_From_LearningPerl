@@ -66,6 +66,9 @@ readable_files();
 
  $ perl 15.3.pl
 
+ <...>
+ Файл 'chapter15_examples.pl' доступен для чтения, записи или исполнения.
+ OR file [_Deparsed_XSubs.pm] not exist OR you have no permission for the action
 
 =end text
 
