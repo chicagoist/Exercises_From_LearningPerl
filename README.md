@@ -1,5 +1,10 @@
 # Exercises_From_LearningPerl
 
-Настроил WSL на Windows 10. Заработал модуль LanguageServer только на старом дистрибутиве 
-SLES 12. На свежей Ubuntu уже проблемы с компиляцией. Теперь имею Perl v5.18.2, Linux  4.4.0-17763,
- Perl-LanguageServer-v2.3.0
+Настроил WSL на Windows 10: 
+
+ActivePerl v5.34.0, Linux 4.4.0-19041-Microsoft, Intellij IDEA Community with Perl plugin.
+
+Books: 
+
+https://docstore.mik.ua/orelly/perl4/index.htm
+
