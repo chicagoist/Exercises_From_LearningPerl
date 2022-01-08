@@ -78,9 +78,22 @@ use Bundle::Camelcade;
     my $root = '/';
     my $ls_l = 'ls -l';
     my $bash = 'sh -c';
-    my @dirs = qw(/var /home);
+    my @dirs = qw(/var /home/*.*/);
+    my $cd = 'cd';
+    my $grep ='* | grep';
+    my $some_txt_files = '*.txt';
+    my $command_line = 'pwd';
+
     #system "$bash '$ls_l $root'; $bash 'cd / $ls_l @dirs'; echo '@dirs'";
-    system "ls", '-l', @dirs;
+    system "ls -l @dirs";
+
+    # вызов system с одним аргументом практически эквивалентен следующему
+    # вызову с несколькими аргументами:
+    system $command_line;
+    system "/bin/sh", "-c", $command_line;
+
+
+
 
 
 }
