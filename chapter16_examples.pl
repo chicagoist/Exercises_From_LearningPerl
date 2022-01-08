@@ -91,6 +91,10 @@ use Bundle::Camelcade;
     # вызову с несколькими аргументами:
     system $command_line;
     system "/bin/sh", "-c", $command_line;
+    # Но последний вариант записи почти не используется, если только вы не хотите,
+    # чтобы обработка выполнялась другим командным процессором:
+
+    system "powershell.exe", "-encodedCommand", '$encodedCommand'; # WSL2 in Windows 10
 
 
 
