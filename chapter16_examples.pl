@@ -76,8 +76,11 @@ use Bundle::Camelcade;
     # ни была команда:
 
     my $root = '/';
-    my @dirs = qw(var home);
-    system "sh -c 'ls $root'; sh -c 'cd $root; ls -l @dirs'; echo '@dirs'";
+    my $ls_l = 'ls -l';
+    my $bash = 'sh -c';
+    my @dirs = qw(/var /home);
+    #system "$bash '$ls_l $root'; $bash 'cd / $ls_l @dirs'; echo '@dirs'";
+    system "ls", '-l', @dirs;
 
 
 }
