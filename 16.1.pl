@@ -36,7 +36,6 @@ use Bundle::Camelcade;
 
 
 
-
 =begin text
 
  $ perl 16.1.pl
