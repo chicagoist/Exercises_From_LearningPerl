@@ -96,8 +96,14 @@ use Bundle::Camelcade;
 
     system "powershell.exe", "-encodedCommand", '$encodedCommand'; # WSL2 in Windows 10
 
-
-
-
+    unless (system "TZ='Europe/Kiev' %H date") {# Возвращаемое значение равно нулю - признак успеха
+        print "We gave you a date, OK!\n";
+    }
 
 }
+
+{ # ФУНКЦИЯ exec
+
+    
+
+ }
