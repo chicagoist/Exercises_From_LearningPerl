@@ -69,7 +69,8 @@ use Bundle::Camelcade;
 
 }
 
-{ #ВЫПОЛНЕНИЕ КОМАНД В ОБХОД КОМАНДНОГО ПРОЦЕССОРА
+{
+    #ВЫПОЛНЕНИЕ КОМАНД В ОБХОД КОМАНДНОГО ПРОЦЕССОРА
 
     # Оператор system  также может вызываться с несколькими аргументами.
     # В этом случае командный процессор не используется, какой бы сложной
@@ -80,7 +81,7 @@ use Bundle::Camelcade;
     my $bash = 'sh -c';
     my @dirs = qw(/var /home/*.*/);
     my $cd = 'cd';
-    my $grep ='* | grep';
+    my $grep = '* | grep';
     my $some_txt_files = '*.txt';
     my $command_line = 'pwd';
 
@@ -96,14 +97,33 @@ use Bundle::Camelcade;
 
     system "powershell.exe", "-encodedCommand", '$encodedCommand'; # WSL2 in Windows 10
 
-    unless (system "TZ='Europe/Kiev' %H date") {# Возвращаемое значение равно нулю - признак успеха
+    unless (system "TZ='Europe/Kiev' date") { # Возвращаемое значение равно нулю - признак успеха
         print "We gave you a date, OK!\n";
     }
 
 }
 
-{ # ФУНКЦИЯ exec
+{
+    # ФУНКЦИЯ exec
 
-    
+    # Практически все, что было сказано о синтаксисе и семантике system,
+    # также относится к функции exec  – кроме одного (очень важного) обстоятельства.
+    # Функция system  создает дочерний  процесс, который берется за свою работу,
+    # пока Perl терпеливо ждет. Функция exec заставляет сам процесс Perl  выполнить
+    # запрашиваемое действие. ПроисхоQ дящее больше напоминает переход goto, нежели
+    # вызов функции.
 
- }
+    use POSIX;
+    my $dir;
+
+    ($^O =~ /Win32/) ? ($dir = getcwd) =~ s/\//\\/g : ($dir = getcwd); # Account for / and \ on Win32 and non-Win32 systems
+    chdir $dir or die "Cannot chdir /tmp: $!";
+    my $file = "$dir" . "/" . 'bedrock';
+
+    if (!defined $dir . '/bedrock') {
+        exec 'gcc', '-o', 'bedrock', 'bedrock.c';
+    }
+    else {
+        warn "File bedrock already exists\n";
+    }
+}
