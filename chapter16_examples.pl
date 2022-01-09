@@ -120,10 +120,12 @@ use Bundle::Camelcade;
     chdir $dir or die "Cannot chdir /tmp: $!";
     my $file = "$dir" . "/" . 'bedrock';
 
-    if (!defined $dir . '/bedrock') {
-        exec 'gcc', '-o', 'bedrock', 'bedrock.c';
-    }
-    else {
-        warn "File bedrock already exists\n";
-    }
+    exec 'gcc', "-o", @ARGV;
+
 }
+
+# $ perl chapter16_examples.pl bedrock bedrock.c && ./bedrock
+
+# Sun Jan  9 07:14:12 PM EET 2022
+# We gave you a date, OK!
+# Привет мир!
