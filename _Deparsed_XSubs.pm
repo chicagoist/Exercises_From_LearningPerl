@@ -355,6 +355,20 @@ package B::UNOP_AUX {
 sub aux_list;
 sub string;
 }
+package B::Utils {
+sub anon_sub;
+sub blessed($) ;
+sub main_cv;
+sub main_root;
+sub main_start;
+sub ppname;
+sub shuffle(@) ;
+sub weaken($) ;
+}
+package CORE::GLOBAL {
+sub sleep;
+sub time;
+}
 package Carp {
 sub _maybe_isa;
 sub downgrade;
@@ -863,6 +877,174 @@ sub enable_profile;
 sub finish_profile;
 sub init_profiler;
 sub set_option;
+}
+package DBD::MariaDB::db {
+sub DESTROY;
+sub FETCH;
+sub SQL_ALL_TYPES() ;
+sub SQL_ARRAY() ;
+sub SQL_ARRAY_LOCATOR() ;
+sub SQL_BIGINT() ;
+sub SQL_BINARY() ;
+sub SQL_BIT() ;
+sub SQL_BLOB() ;
+sub SQL_BLOB_LOCATOR() ;
+sub SQL_BOOLEAN() ;
+sub SQL_CHAR() ;
+sub SQL_CLOB() ;
+sub SQL_CLOB_LOCATOR() ;
+sub SQL_DATE() ;
+sub SQL_DATETIME() ;
+sub SQL_DECIMAL() ;
+sub SQL_DOUBLE() ;
+sub SQL_FLOAT() ;
+sub SQL_GUID() ;
+sub SQL_INTEGER() ;
+sub SQL_INTERVAL() ;
+sub SQL_INTERVAL_DAY() ;
+sub SQL_INTERVAL_DAY_TO_HOUR() ;
+sub SQL_INTERVAL_DAY_TO_MINUTE() ;
+sub SQL_INTERVAL_DAY_TO_SECOND() ;
+sub SQL_INTERVAL_HOUR() ;
+sub SQL_INTERVAL_HOUR_TO_MINUTE() ;
+sub SQL_INTERVAL_HOUR_TO_SECOND() ;
+sub SQL_INTERVAL_MINUTE() ;
+sub SQL_INTERVAL_MINUTE_TO_SECOND() ;
+sub SQL_INTERVAL_MONTH() ;
+sub SQL_INTERVAL_SECOND() ;
+sub SQL_INTERVAL_YEAR() ;
+sub SQL_INTERVAL_YEAR_TO_MONTH() ;
+sub SQL_LONGVARBINARY() ;
+sub SQL_LONGVARCHAR() ;
+sub SQL_MULTISET() ;
+sub SQL_MULTISET_LOCATOR() ;
+sub SQL_NUMERIC() ;
+sub SQL_REAL() ;
+sub SQL_REF() ;
+sub SQL_ROW() ;
+sub SQL_SMALLINT() ;
+sub SQL_TIME() ;
+sub SQL_TIMESTAMP() ;
+sub SQL_TINYINT() ;
+sub SQL_TYPE_DATE() ;
+sub SQL_TYPE_TIME() ;
+sub SQL_TYPE_TIMESTAMP() ;
+sub SQL_TYPE_TIMESTAMP_WITH_TIMEZONE() ;
+sub SQL_TYPE_TIME_WITH_TIMEZONE() ;
+sub SQL_UDT() ;
+sub SQL_UDT_LOCATOR() ;
+sub SQL_UNKNOWN_TYPE() ;
+sub SQL_VARBINARY() ;
+sub SQL_VARCHAR() ;
+sub SQL_WCHAR() ;
+sub SQL_WLONGVARCHAR() ;
+sub SQL_WVARCHAR() ;
+sub STORE;
+sub _async_check;
+sub _login;
+sub commit;
+sub connected;
+sub data_sources;
+sub disconnect;
+sub do;
+sub last_insert_id;
+sub mariadb_async_ready;
+sub mariadb_async_result;
+sub mariadb_sockfd;
+sub ping;
+sub quote;
+sub rollback;
+sub selectall_arrayref;
+sub selectrow_array;
+sub selectrow_arrayref;
+sub take_imp_data;
+sub type_info_all;
+}
+package DBD::MariaDB::dr {
+sub SQL_ALL_TYPES() ;
+sub SQL_ARRAY() ;
+sub SQL_ARRAY_LOCATOR() ;
+sub SQL_BIGINT() ;
+sub SQL_BINARY() ;
+sub SQL_BIT() ;
+sub SQL_BLOB() ;
+sub SQL_BLOB_LOCATOR() ;
+sub SQL_BOOLEAN() ;
+sub SQL_CHAR() ;
+sub SQL_CLOB() ;
+sub SQL_CLOB_LOCATOR() ;
+sub SQL_DATE() ;
+sub SQL_DATETIME() ;
+sub SQL_DECIMAL() ;
+sub SQL_DOUBLE() ;
+sub SQL_FLOAT() ;
+sub SQL_GUID() ;
+sub SQL_INTEGER() ;
+sub SQL_INTERVAL() ;
+sub SQL_INTERVAL_DAY() ;
+sub SQL_INTERVAL_DAY_TO_HOUR() ;
+sub SQL_INTERVAL_DAY_TO_MINUTE() ;
+sub SQL_INTERVAL_DAY_TO_SECOND() ;
+sub SQL_INTERVAL_HOUR() ;
+sub SQL_INTERVAL_HOUR_TO_MINUTE() ;
+sub SQL_INTERVAL_HOUR_TO_SECOND() ;
+sub SQL_INTERVAL_MINUTE() ;
+sub SQL_INTERVAL_MINUTE_TO_SECOND() ;
+sub SQL_INTERVAL_MONTH() ;
+sub SQL_INTERVAL_SECOND() ;
+sub SQL_INTERVAL_YEAR() ;
+sub SQL_INTERVAL_YEAR_TO_MONTH() ;
+sub SQL_LONGVARBINARY() ;
+sub SQL_LONGVARCHAR() ;
+sub SQL_MULTISET() ;
+sub SQL_MULTISET_LOCATOR() ;
+sub SQL_NUMERIC() ;
+sub SQL_REAL() ;
+sub SQL_REF() ;
+sub SQL_ROW() ;
+sub SQL_SMALLINT() ;
+sub SQL_TIME() ;
+sub SQL_TIMESTAMP() ;
+sub SQL_TINYINT() ;
+sub SQL_TYPE_DATE() ;
+sub SQL_TYPE_TIME() ;
+sub SQL_TYPE_TIMESTAMP() ;
+sub SQL_TYPE_TIMESTAMP_WITH_TIMEZONE() ;
+sub SQL_TYPE_TIME_WITH_TIMEZONE() ;
+sub SQL_UDT() ;
+sub SQL_UDT_LOCATOR() ;
+sub SQL_UNKNOWN_TYPE() ;
+sub SQL_VARBINARY() ;
+sub SQL_VARCHAR() ;
+sub SQL_WCHAR() ;
+sub SQL_WLONGVARCHAR() ;
+sub SQL_WVARCHAR() ;
+sub dbixs_revision;
+sub discon_all_;
+sub disconnect_all;
+}
+package DBD::MariaDB::st {
+sub DESTROY;
+sub FETCH;
+sub FETCH_attrib;
+sub STORE;
+sub _async_check;
+sub _prepare;
+sub bind_param;
+sub bind_param_inout;
+sub blob_read;
+sub execute;
+sub fetch;
+sub fetchall_arrayref;
+sub fetchrow;
+sub fetchrow_array;
+sub fetchrow_arrayref;
+sub finish;
+sub last_insert_id;
+sub mariadb_async_ready;
+sub mariadb_async_result;
+sub more_results;
+sub rows;
 }
 package DBD::Pg {
 sub PG_ACLITEM() ;
@@ -1928,6 +2110,40 @@ sub rows;
 package DBI::var {
 sub FETCH;
 }
+package Data::Dump::Streamer {
+sub SvREADONLY_ref($;$) ;
+sub SvREFCNT_ref($;$) ;
+sub _could_be_dualvar($) ;
+sub _globname($) ;
+sub _make_ro($) ;
+sub alias_av(\@$$) ;
+sub alias_hv(\%$$) ;
+sub alias_ref;
+sub all_keys(\%\@\@) ;
+sub blessed($) ;
+sub dualvar($$) ;
+sub globname($) ;
+sub hidden_keys(\%) ;
+sub is_numeric($) ;
+sub is_regexp($) ;
+sub isweak($) ;
+sub legal_keys(\%) ;
+sub looks_like_number($) ;
+sub make_ro($) ;
+sub push_alias(\@$) ;
+sub readonly($) ;
+sub readonly_set($) ;
+sub refaddr($) ;
+sub refaddr_or_glob($) ;
+sub refcount($) ;
+sub reftype($) ;
+sub reftype_or_glob($) ;
+sub regex($) ;
+sub regexp_pattern($) ;
+sub sv_refcount($) ;
+sub weak_refcount($) ;
+sub weaken($) ;
+}
 package Data::Dumper {
 sub Dumpxs($;$$) ;
 sub _vstring($) ;
@@ -1965,6 +2181,10 @@ sub _seconds_as_components($$;$$) ;
 sub _time_as_seconds($$$$) ;
 sub _ymd2rd($$$$) ;
 }
+package Devel::Caller {
+sub _context_cv;
+sub _context_op;
+}
 package Devel::Cover {
 sub abs_path;
 sub getcwd;
@@ -1975,6 +2195,9 @@ sub ppname;
 }
 package Devel::Cover::Util {
 sub abs_path;
+}
+package Devel::LexAlias {
+sub _lexalias;
 }
 package Devel::NYTProf::Data {
 sub load_profile_data_from_file;
@@ -2769,9 +2992,13 @@ sub blocking($;$) ;
 sub clearerr;
 sub error;
 sub flush;
+sub get_layers(*;@) ;
 sub getline;
 sub getlines;
 sub gets;
+sub inspect;
+sub pop_layer;
+sub push_layer;
 sub setbuf;
 sub setvbuf;
 sub sync;
@@ -4740,6 +4967,10 @@ package PerlIO::Layer {
 sub NoWarnings;
 sub find;
 }
+package PerlIO::Util {
+sub _gensym_ref;
+sub known_layers;
+}
 package Proc::ProcessTable {
 sub _initialize_os;
 sub constant;
@@ -5254,6 +5485,10 @@ sub TIEHASH;
 sub _tie_it;
 sub flags;
 }
+package Time {
+sub sleep;
+sub time;
+}
 package Time::HiRes {
 sub alarm($;$) ;
 sub clock() ;
@@ -5272,6 +5507,123 @@ sub time() ;
 sub ualarm($;$) ;
 sub usleep($) ;
 sub utime($$@) ;
+}
+package Time::Moment {
+sub at_last_day_of_month;
+sub at_last_day_of_quarter;
+sub at_last_day_of_year;
+sub at_midnight;
+sub at_noon;
+sub at_utc;
+sub compare;
+sub day_of_month;
+sub day_of_quarter;
+sub day_of_week;
+sub day_of_year;
+sub delta_days;
+sub delta_hours;
+sub delta_microseconds;
+sub delta_milliseconds;
+sub delta_minutes;
+sub delta_months;
+sub delta_nanoseconds;
+sub delta_seconds;
+sub delta_weeks;
+sub delta_years;
+sub epoch;
+sub from_epoch;
+sub from_jd;
+sub from_mjd;
+sub from_object;
+sub from_rd;
+sub from_string;
+sub hour;
+sub is_after;
+sub is_before;
+sub is_equal;
+sub is_leap_year;
+sub jd;
+sub length_of_month;
+sub length_of_quarter;
+sub length_of_week_year;
+sub length_of_year;
+sub local_rd_as_seconds;
+sub local_rd_values;
+sub microsecond;
+sub microsecond_of_day;
+sub millisecond;
+sub millisecond_of_day;
+sub minus_days;
+sub minus_hours;
+sub minus_microseconds;
+sub minus_milliseconds;
+sub minus_minutes;
+sub minus_months;
+sub minus_nanoseconds;
+sub minus_seconds;
+sub minus_weeks;
+sub minus_years;
+sub minute;
+sub minute_of_day;
+sub mjd;
+sub month;
+sub nanosecond;
+sub nanosecond_of_day;
+sub new;
+sub now;
+sub now_utc;
+sub offset;
+sub plus_days;
+sub plus_hours;
+sub plus_microseconds;
+sub plus_milliseconds;
+sub plus_minutes;
+sub plus_months;
+sub plus_nanoseconds;
+sub plus_seconds;
+sub plus_weeks;
+sub plus_years;
+sub precision;
+sub quarter;
+sub rd;
+sub rdn;
+sub second;
+sub second_of_day;
+sub strftime;
+sub to_string;
+sub utc_rd_as_seconds;
+sub utc_rd_values;
+sub week;
+sub with;
+sub with_day_of_month;
+sub with_day_of_quarter;
+sub with_day_of_week;
+sub with_day_of_year;
+sub with_hour;
+sub with_microsecond;
+sub with_microsecond_of_day;
+sub with_millisecond;
+sub with_millisecond_of_day;
+sub with_minute;
+sub with_minute_of_day;
+sub with_month;
+sub with_nanosecond;
+sub with_nanosecond_of_day;
+sub with_offset;
+sub with_offset_same_instant;
+sub with_offset_same_local;
+sub with_precision;
+sub with_quarter;
+sub with_rdn;
+sub with_second;
+sub with_second_of_day;
+sub with_week;
+sub with_year;
+sub year;
+}
+package Time::Moment::Internal {
+sub orthodox_easter_sunday;
+sub western_easter_sunday;
 }
 package Time::Piece {
 sub _crt_gmtime($) ;

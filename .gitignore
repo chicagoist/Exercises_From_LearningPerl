@@ -1,7 +1,10 @@
-/.idea/
+.idea/
 .run/
 .run/Unnamed.run.xml
-/.run/
+.run/
 .gitignore
-/IDEA_WINDOWS_settings.zip
-/13.7_test.pl
+IDEA_WINDOWS_settings.zip
+13.7_test.pl
+out.txt_Hard_Link
+out.txt_Soft_Link
+
