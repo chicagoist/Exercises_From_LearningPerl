@@ -122,6 +122,10 @@ use Bundle::Camelcade;
 
     exec 'gcc', "-o", @ARGV;
 
+    # Так как Perl перестает управлять выполнением программы после запуска указанной команды,
+    # любой код Perl после вызова exec не имеет смысла, кроме обработки ошибок в том случае,
+    # если запрос на запуск команды завершился неудачей.
+
 }
 
 # $ perl chapter16_examples.pl bedrock bedrock.c && ./bedrock
@@ -129,3 +133,9 @@ use Bundle::Camelcade;
 # Sun Jan  9 07:14:12 PM EET 2022
 # We gave you a date, OK!
 # Привет мир!
+
+
+{ # ПЕРЕМЕННЫЕ СРЕДЫ
+
+
+ }
