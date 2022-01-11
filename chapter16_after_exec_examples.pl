@@ -127,17 +127,40 @@ use POSIX;
 {# ПРОЦЕССЫ КАК ФАЙЛОВЫЕ ДЕСКРИПТОРЫ
     #
     open LS, "date|" or die "cannot pipe to mail: $!";
+    open PRINT, "|grep 2022" or die "cannot pipe to mail: $!";
     open my $date_comand, '-|', 'date' or die "cannot pipe from date: $!";
-    while (<LS>) {
-       print $_;
-    }
+    # while (<LS>) {
+    #    print $_;
+    # }
+    #
+    #
+    print "\$date_comand => ", <$date_comand>;
+    print "LS =>  ", <LS>;
 
-    print <$date_comand>;
-    print <LS>;
 
     close LS;
-    die "LS: non-zero exit of $?" if $?;
-    print <LS>; # readline() on closed filehandle LS at chapter16_after_exec_examples.pl line 140.
+    close $date_comand;
+
+    #print <LS>; # readline() on closed filehandle LS at chapter16_after_exec_examples.pl line 140.
+
+    open my $find_fh, '-|', 'find',
+        qw( / -atime +90 -size +1000 -print )or die "cannot pipe from find: $!";
+    while (<$find_fh>) {
+        chomp;
+        printf "%s size %dK last accessed %.2f days ago\n",$_, (1023 + -s $_)/1024, -A $_;
+    }
+
+    # That find command looks for all the files that have not been accessed within the past 90
+    # days and that are larger than 1,000 blocks (these are good candidates to move to longer-term storage).
+    # While find is searching and searching, Perl can wait. As it finds each file, Perl responds to the
+    # incoming name and displays some information about that file for further research. Had this been
+    # written with backquotes, you would not see any output until the find  command had completely finished,
+    # and it’s comforting to see that it’s actually doing the job even before it’s done.
 
 
 }
+
+{ # ВЕТВЛЕНИЕ
+
+
+ }
