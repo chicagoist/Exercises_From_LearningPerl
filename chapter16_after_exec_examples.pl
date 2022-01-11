@@ -111,15 +111,33 @@ use POSIX;
     my @files_find = ();
     my $file_code;
 
-    foreach (`find *`) {
-        push @files_find, $_;
+    # foreach (`find *`) {
+    #     push @files_find, $_;
+    # }
+    #
+    # foreach (@files_find) {
+    #     $files{$_} .= `ls -l $_`;
+    # }
+
+    # foreach (sort keys %files) {
+    #     print $files{$_};
+    # }
+}
+
+{# ПРОЦЕССЫ КАК ФАЙЛОВЫЕ ДЕСКРИПТОРЫ
+    #
+    open LS, "date|" or die "cannot pipe to mail: $!";
+    open my $date_comand, '-|', 'date' or die "cannot pipe from date: $!";
+    while (<LS>) {
+       print $_;
     }
 
-    foreach (@files_find) {
-        $files{$_} .= `ls -l $_`;
-    }
+    print <$date_comand>;
+    print <LS>;
 
-    foreach (sort keys %files) {
-        print $files{$_};
-    }
+    close LS;
+    die "LS: non-zero exit of $?" if $?;
+    print <LS>; # readline() on closed filehandle LS at chapter16_after_exec_examples.pl line 140.
+
+
 }
