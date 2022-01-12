@@ -45,7 +45,7 @@ use POSIX;
     # это делается:
 
     # $ENV{'PATH'} = "/home/rootbeer/bin:$ENV{'PATH'}";
-    $ENV{'PATH'} = "/home/legioner/usr/bin:$ENV{'PATH'}";
+    $ENV{'PATH'} = "/home/user/usr/bin:$ENV{'PATH'}";
     delete $ENV{'IFS'};
     # my $make_result = system "make";
     my $make_result = system "curl";
@@ -244,7 +244,7 @@ use POSIX;
 
 
     open my $find_windows, '-|', 'find',
-        qw(/mnt/c/Users/vdundukov/ -atime +10 -size +1000 -print) or die "cannot pipe from WINDOWS USER find: $!";
+        qw(/mnt/c/Users/user/ -atime +10 -size +1000 -print) or die "cannot pipe from WINDOWS USER find: $!";
     while (<$find_windows>) {
         chomp;
         if ($int_count) {
