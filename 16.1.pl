@@ -35,17 +35,22 @@ use Bundle::Camelcade;
 # выполняет команду ls –l для получения списка файлов в длинном формате. (Если вы не работаете в UNIX,
 # используйте команду своей системы для получения расширенной информации о содержимом каталога.)
 
+sub ls_l {
+    print "Enter your disare directory : ";
+    chomp(my $dir = <STDIN>);
+    if(! defined $dir) {
+        # $dir = "/home/$ENV{USER}";
+        $dir = "~/";
+    }
+    exec "ls -l $dir";
+}
 
-
-
+&ls_l;
 
 
 =begin text
 
  $ perl 16.1.pl
-
-
-
 
 =end text
 
