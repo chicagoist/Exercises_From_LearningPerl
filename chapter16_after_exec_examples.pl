@@ -143,12 +143,12 @@ use POSIX;
 
     #print <LS>; # readline() on closed filehandle LS at chapter16_after_exec_examples.pl line 140.
 
-    open my $find_fh, '-|', 'find',
-        qw( / -atime +90 -size +1000 -print )or die "cannot pipe from find: $!";
-    while (<$find_fh>) {
-        chomp;
-        printf "%s size %dK last accessed %.2f days ago\n",$_, (1023 + -s $_)/1024, -A $_;
-    }
+    # open my $find_fh, '-|', 'find',
+    #     qw( / -atime +90 -size +1000 -print )or die "cannot pipe from find: $!";
+    # while (<$find_fh>) {
+    #     chomp;
+    #     printf "%s size %dK last accessed %.2f days ago\n",$_, (1023 + -s $_)/1024, -A $_;
+    # }
 
     # That find command looks for all the files that have not been accessed within the past 90
     # days and that are larger than 1,000 blocks (these are good candidates to move to longer-term storage).
@@ -161,6 +161,21 @@ use POSIX;
 }
 
 { # ВЕТВЛЕНИЕ
+
+    # Кроме высокоуровневых интерфейсов, описанных ранее, Perl
+    # предоставляет практически прямой доступ к низкоуровневым
+    # системным функциям UNIX и других систем.
+
+    system "echo 'Date today => ' `date`";
+
+    # При использовании низкоуровневых системных вызовов эта задача реализуется так:
+    defined(my $pid = fork) or die "Cannot fork: $!";
+    unless ($pid) {
+        # Дочерний процесс
+         exec "echo 'Date today => ' `date`"; die "cannot exec date: $!";
+    }
+    # Родительский процесс
+    waitpid($pid, 0);
 
 
  }
