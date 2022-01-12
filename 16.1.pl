@@ -36,15 +36,21 @@ use Bundle::Camelcade;
 # используйте команду своей системы для получения расширенной информации о содержимом каталога.)
 
 sub ls_l {
-    print "Enter your disare directory : ";
-    chomp(my $dir = <STDIN>);
-    if(! defined $dir) {
-        # $dir = "/home/$ENV{USER}";
-        $dir = "~/";
-    }
-    exec "ls -l $dir";
-}
+    my $dir;
 
+        if (defined $ARGV[0]) {
+            $_ = $ARGV[0];
+            /^\/.*$/;
+            chomp($dir = $ARGV[0]);
+        }
+        elsif (!defined $ARGV[0]) {
+            print "Enter your disared directory : ";
+            chomp($dir = <STDIN>);
+        }
+
+    exec "ls -l $dir" or
+    die "Something going wrong $!";
+}
 &ls_l;
 
 
@@ -59,4 +65,12 @@ sub ls_l {
 
 # Верный ответ из книги:
 
-#
+# Here’s one way to do it:
+
+#  chdir '/' or die "Can't chdir to root directory: $!";
+#  exec 'ls', '-l' or die "Can't exec ls: $!";
+
+# The first line changes the current working directory to the root directory,
+# as our particular hardcoded directory. The second line uses the multiple-argument
+# exec function to send the result to standard output. We could have used the
+# single-argument form just as well, but it doesn’t hurt to do it this way.
