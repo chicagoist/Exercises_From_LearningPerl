@@ -70,7 +70,7 @@ sub ls_l_out {
 
 =begin text
 
- $ perl 16.1.pl
+ $ perl 16.2.pl
 
 =end text
 
@@ -81,10 +81,18 @@ sub ls_l_out {
 
 # Here’s one way to do it:
 
-#  chdir '/' or die "Can't chdir to root directory: $!";
-#  exec 'ls', '-l' or die "Can't exec ls: $!";
+# open STDOUT, '>', 'ls.out' or die "Can't write to ls.out: $!";
+# open STDERR, '>', 'ls.err' or die "Can't write to ls.err: $!";
+# chdir '/' or die "Can't chdir to root directory: $!";
+# exec 'ls', '-l' or die "Can't exec ls: $!";
 
-# The first line changes the current working directory to the root directory,
-# as our particular hardcoded directory. The second line uses the multiple-argument
-# exec function to send the result to standard output. We could have used the
-# single-argument form just as well, but it doesn’t hurt to do it this way.
+# The first and second lines reopen STDOUT  and STDERR  to a file
+# in the current directory (before we change directories). Then,
+# after the directory change, the directory listing command executes,
+# sending the data back to the files opened in the original directory.
+# Where would the message from the last die  go? Well, it would go into
+# ls.err, of course, since that’s where STDERR  is going at that point.
+# The die  from chdir would go there too. But where would the message
+# go if we can’t reopen STDERR on the second line? It goes to the old
+# STDERR. When reopening the three standard filehandles (STDIN, STDOUT,
+# and STDERR), the old filehandles are still open.
