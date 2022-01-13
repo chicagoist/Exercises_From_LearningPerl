@@ -27,7 +27,7 @@ total 764
 -rw-r--r-- 1 legioner legioner   8049 Jan  5 18:50 15.4.pl
 -rw-r--r-- 1 legioner legioner   5276 Jan  6 13:26 15.5.pl
 -rw-r--r-- 1 legioner legioner   2127 Jan 12 16:02 16.1.pl
--rw-r--r-- 1 legioner legioner   2574 Jan 13 11:55 16.2.pl
+-rw-r--r-- 1 legioner legioner   3105 Jan 13 12:02 16.2.pl
 -rw-r--r-- 1 legioner legioner    414 Dec 20 11:45 2minus.pl
 -rw-r--r-- 1 legioner legioner    823 Jan  3 17:03 4.1_max.pl
 -rw-r--r-- 1 legioner legioner   1496 Dec 20 11:45 4.1_total.pl
@@ -89,8 +89,8 @@ drwxr-xr-x 1 legioner legioner   4096 Dec 21 15:38 fred
 -rw-r--r-- 1 legioner legioner  10342 Nov 30 00:05 idea_settings.zip
 -rw-r--r-- 1 legioner legioner   1734 Dec 11 16:21 IDEA_WINDOWS_settings.zip
 -rw-r--r-- 1 legioner legioner    329 Dec 20 11:50 logfile
--rw-r--r-- 1 legioner legioner     53 Jan 13 11:55 ls.err
--rw-r--r-- 1 legioner legioner      0 Jan 13 11:56 ls.out
+-rw-r--r-- 1 legioner legioner     53 Jan 13 12:18 ls.err
+-rw-r--r-- 1 legioner legioner      0 Jan 13 12:18 ls.out
 -rw-r--r-- 1 legioner legioner    414 Dec 20 11:50 odnostrochnik.pl
 -rw-r--r-- 1 legioner legioner    394 Dec 20 11:51 odnostrochnikUndef.pl
 -rw-r--r-- 1 legioner legioner  12512 Dec 20 11:51 OTHER.pl
