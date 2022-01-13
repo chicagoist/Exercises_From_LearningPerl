@@ -42,7 +42,8 @@ sub date_out {
 
     foreach (<$my_date>) {
         chomp;
-        say $_;
+        say ">$_<";
+
         if ( /^Sun\s+\.*/ or /^Sat\s+\.*/ ) {
             print "go play\n";
         }
@@ -68,4 +69,21 @@ sub date_out {
 
 # Верный ответ из книги:
 
-#
+# Here’s one way to do it:
+
+# if (`date` =~ /\AS/) {
+# print "go play!\n";
+# } else {
+# print "get to work!\n";
+# }
+
+# Well, since both Saturday and Sunday start with an S,
+# and the day of the week is the first part of the output
+# of the date command, this is pretty simple. Just check
+# the output of the date command to see if it starts with S.
+# There are many harder ways to do this program, and we’ve
+# seen most of them in our classes. If we had to use this in
+# a real-world program, though, we’d probably use the pat‐tern
+# /\A(Sat|Sun)/. It’s a tiny bit less efficient, but that hardly
+# matters; besides, it’s so much easier for the maintenance
+# programmer to understand.
