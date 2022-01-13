@@ -32,13 +32,25 @@ use Bundle::Camelcade;
 
 
 # Напишите программу, которая разбирает результат команды date для определения
-# текущего дня недели. Для рабочих дней проQ грамма выводит сообщение get to work,
+# текущего дня недели. Для рабочих дней программа выводит сообщение get to work,
 # для выходных – сообщение go play. Вывод команды date  начинается с Mon  для понедельника
-# (Monday1 ). Если в вашей системе команда date  отсутствует, напишите фиктивную программу,
+# (Monday). Если в вашей системе команда date  отсутствует, напишите фиктивную программу,
 # которая просто выдает строку в формате date.
 
 sub date_out {
+    open my $my_date, '-|', "date";
 
+    foreach (<$my_date>) {
+        chomp;
+        say $_;
+        if ( /^Sun\s+\.*/ or /^Sat\s+\.*/ ) {
+            print "go play\n";
+        }
+        else {
+            print "get to work\n";
+        }
+    }
+    close($my_date);
 }
 &date_out;
 
@@ -46,6 +58,8 @@ sub date_out {
 =begin text
 
  $ perl 16.3.pl
+ Thu Jan 13 01:52:53 PM EET 2022
+ get to work
 
 =end text
 
