@@ -203,15 +203,12 @@ use Bundle::Camelcade;
 
     foreach (<$some_file>) {
         chomp;
-
-        my @items = split /:/;
+        # my @items = split /:/;
 
         ($card_num, $count) = (split /:/)[1, 5];
         ($first, $last) = (sort @names)[0, -1];
 
         printf("%s\n\$card_num = %s\n\$count = %s\n\n", $_, $card_num, $count);
-
-
     }
 
     printf("%s\n\$first = %s\n\$last = %s\n\n", "@names", $first, $last);
