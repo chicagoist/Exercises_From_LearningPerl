@@ -311,7 +311,6 @@ use Bundle::Camelcade;
     print "Tonight's players were: @players\n";
     print "Their scores were: @score{@players}\n";
 
-
   }
 
 
