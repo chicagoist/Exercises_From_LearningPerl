@@ -40,6 +40,25 @@ use Bundle::Camelcade;
 sub access_modifc_time {
 
 
+
+    my @stat_data;
+
+    while (<*>) {
+
+        my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,
+            $atime,$mtime,$ctime,$blksize,$blocks)
+            = stat($_);
+
+
+        if(length($_) <= 25) { # для наглядность убрал слишком длинные имена файлов
+
+            #printf("%-30s\t%s\t%s\n", $_, $atime, $mtime);
+            printf("%-30s\t%s\t%s\n", $_, (stat $_)[8,9]);
+
+        }
+
+    }
+
 }
 
 &access_modifc_time;
@@ -49,8 +68,12 @@ sub access_modifc_time {
 =begin text
 
  $ perl 17.2.pl
-
-
+ ...
+ 16.3.pl                         1642756160      1642075099
+ 17.1.pl                         1642756160      1642686060
+ 17.2.pl                         1642758815      1642758813
+ 2minus.pl                       1642756160      1639993530
+ ...
 
 =end text
 
