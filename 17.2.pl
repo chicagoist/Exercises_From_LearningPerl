@@ -52,8 +52,8 @@ sub access_modifc_time {
 
         if(length($_) <= 25) { # для наглядность убрал слишком длинные имена файлов
 
-            #printf("%-30s\t%s\t%s\n", $_, $atime, $mtime);
-            printf("%-30s\t%s\t%s\n", $_, (stat $_)[8,9]);
+            #printf("%-30s\t%d\t%d\n", $_, $atime, $mtime);
+            printf("%-30s\t%d\t%d\n", $_, (stat $_)[8,9]);
 
         }
 
