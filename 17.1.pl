@@ -77,7 +77,6 @@ sub search_templates {
 &search_templates;
 
 
-
 =begin text
 
  $ perl 17.1.pl
