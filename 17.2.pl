@@ -39,15 +39,13 @@ use Bundle::Camelcade;
 
 sub access_modifc_time {
 
-
-
-    my @stat_data;
-
     while (<*>) {
 
-        my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,
-            $atime,$mtime,$ctime,$blksize,$blocks)
-            = stat($_);
+        # my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,
+        #     $atime,$mtime,$ctime,$blksize,$blocks)
+        #     = stat($_);
+# OR
+        # my( $atime, $mtime ) = (stat)[8,9]; # or like this
 
 
         if(length($_) <= 25) { # для наглядность убрал слишком длинные имена файлов
@@ -82,4 +80,25 @@ sub access_modifc_time {
 
 # Верный ответ из книги:
 
-#
+# This program is simple. There are many ways that we can get a
+# list of files, but since we only care about the ones in the
+# current working directory we can just use a glob. We use foreach
+# to put each filename in the default variable $_ since we know
+# that stat  uses that variable by default. We surround the entire
+# stat before we perform the slice:
+
+# foreach ( glob( '*' ) ) {
+# my( $atime, $mtime ) = (stat)[8,9];
+# printf "%-20s %10d %10d\n", $_, $atime, $mtime;
+# }
+
+# We know to use the indices 8 and 9 because we look at the
+# documentation for stat. The documentation writers have been quite
+# kind to us by showing us a table that maps the index of the list
+# item to what it does, so we don’t have to count over ourselves.
+# If we don’t want to use $_, we can use our own control variable:
+
+# foreach my $file ( glob( '*' ) ) {
+# my( $atime, $mtime ) = (stat $file)[8,9];
+# printf "%-20s %10d %10d\n", $file, $atime, $mtime;
+# }
