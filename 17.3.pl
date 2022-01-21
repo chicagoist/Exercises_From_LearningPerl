@@ -38,6 +38,7 @@ use Bundle::Camelcade;
 # barney.txt        2011-10-13        2011-08-11
 # betty.txt         2011-10-15        2010-07-24
 
+# Использовал эту книгу:
 # https://docstore.mik.ua/orelly/perl/cookbook/ch03_02.htm
 
 sub access_modifc_time {
