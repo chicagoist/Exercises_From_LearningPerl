@@ -23,6 +23,8 @@ use DDP;
 use Data::Dumper;
 use Bundle::Camelcade;
 use autodie qw(:all);
+our $var_global;
+
 
 
 # File 17.1.pl
@@ -39,6 +41,10 @@ use autodie qw(:all);
 # недействителен (например, если он содержит непарные круглые скобки), программа должна просто
 # вывести сообщение об ошибке и разрешить пользователю ввести другой шаблон. Если пользователь
 # вместо шаблона вводит пустую строку, программа завершает работу.
+{
+    $var_global = "globalLL";
+
+}
 
 sub search_templates {
     my @sample_text;
@@ -71,7 +77,9 @@ sub search_templates {
         }
 
         print "@matching_lines"; # print array with matched lines
-        print "Matching template = $index\n"; # print index
+        print "Matching template = $index\n\n"; # print index
+        print "$var_global\n";
+
     }
 }
 
