@@ -22,6 +22,7 @@ use utf8::all 'GLOBAL';
 use DDP;
 use Data::Dumper;
 use Bundle::Camelcade;
+use autodie qw(:all);
 
 
 # File 17.1.pl
