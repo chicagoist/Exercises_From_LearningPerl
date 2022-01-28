@@ -11,6 +11,9 @@ binmode(STDOUT, ':utf8');
 use utf8;
 use warnings;
 use POSIX;
+use DDP;
+use Data::Dumper;
+use Bundle::Camelcade; # for Intellij IDEA
 
 # print "\n" . $rocks[-100] . "\n";
 # #print "\n" . $#rocks . "\n";
@@ -596,3 +599,5 @@ if (/(.)(.)\g{-1}11/) {
 
 =cut
 
+print Dumper int(rand(10));
+p $_ = int(rand(10));
