@@ -129,3 +129,7 @@ $product->count(10);
 print $product->sum_rur;   # 4900
 print $product->sum_usd;   # 70
 print $product->name;   # name
+print "\n";
+print $product->isa('Local::Product') . "\n"; #
+print $product->can("new") , "\n"; #
+print $product->VERSION , "\n"; #
