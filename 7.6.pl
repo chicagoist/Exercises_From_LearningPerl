@@ -37,7 +37,7 @@ sub find_a_string {
             $index_words++
         }
         # } # от дебага while() выше
-        # 45
+        #
     }
 
 
